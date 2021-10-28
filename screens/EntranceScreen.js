@@ -1,30 +1,29 @@
 import React, {useState} from 'react';
 import { StyleSheet, View, Image, SafeAreaView, TextInput, Button, TouchableHighlight, TouchableNativeFeedback} from 'react-native';
- 
- 
-export default function SignIn() {
-  return(
-      <SafeAreaView style={styles.back}>
-        <Image style={styles.logo} source={require('./images/logo.png')} />
-        <View>
-          <TextInput placeholderTextColor="#c2a947"  style={styles.default} placeholder="Логин" keyboardType="email-address" />
-        </View>
-        <View>
-          <TextInput placeholderTextColor="#c2a947" style={styles.default} placeholder="Пароль" secureTextEntry={true}  />
-        </View>
-        <View style={styles.buttonStyle}>
-          <TouchableNativeFeedback>
-            <Button 
-            title="Войти"
-            color='white'
-            backgroundColor='red'
-            
-              />
-          </TouchableNativeFeedback>
-        </View>  
-      </SafeAreaView>
-  )
-}
+
+
+const EntranceScreen = () => (
+    <SafeAreaView style={styles.back}>
+    <Image style={styles.logo} source={require('../images/logo.png')} />
+    <View>
+      <TextInput placeholderTextColor="#c2a947"  style={styles.default} placeholder="Логин" keyboardType="email-address" />
+    </View>
+    <View>
+      <TextInput placeholderTextColor="#c2a947" style={styles.default} placeholder="Пароль" secureTextEntry={true}  />
+    </View>
+    <View style={styles.buttonStyle}>
+      <TouchableNativeFeedback>
+        <Button
+        title="Войти"
+        color='white'
+        backgroundColor='red'
+
+          />
+      </TouchableNativeFeedback>
+    </View>
+    </SafeAreaView>
+)
+
 
 const styles = StyleSheet.create({
   logo:{
@@ -58,13 +57,15 @@ const styles = StyleSheet.create({
       color: '#ffcc00',
       fontSize: 20,
       marginLeft: 55,
-      
+
     },
-  
+
   back:{
     flex: 1,
     backgroundColor: '#393939',
     justifyContent: 'flex-start',
-    
+
   }
 });
+
+export default EntranceScreen

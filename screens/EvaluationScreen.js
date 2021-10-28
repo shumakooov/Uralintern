@@ -2,8 +2,7 @@ import React, {useState} from 'react';
 import { StyleSheet, View, Text, Image, SafeAreaView, TextInput, Button, TouchableHighlight, TouchableNativeFeedback, ScrollView} from 'react-native';
 
 
-export default function TeamEvaluation() {
-  return(
+const EvaluationScreen = () => (
     <View style={styles.back}>
     <ScrollView>
     <SafeAreaView>
@@ -47,18 +46,17 @@ export default function TeamEvaluation() {
             </View>
         </View>
         <View style={styles.infoScores}>
-            <Image style={styles.infoImg} source={require('./images/info.png')} />
+            <Image style={styles.infoImg} source={require('../images/info.png')} />
             <Text style={styles.infoText}>Информация по оценкам</Text>
           </View>
           </ScrollView>
         <View style={styles.footerStyle}>
-          <Image style={styles.imgFooter} source={require('./images/test_img5.png')} />
-          <Image style={styles.imgFooter} source={require('./images/test_img6.png')} />
-          <Image style={styles.imgFooter} source={require('./images/test_img7.png')} />
+          <Image style={styles.imgFooter} source={require('../images/test_img5.png')} />
+          <Image style={styles.imgFooter} source={require('../images/test_img6.png')} />
+          <Image style={styles.imgFooter} source={require('../images/test_img7.png')} />
         </View>
     </View>
-  )
-}
+)
 
 const styles = StyleSheet.create({
     listText:{
@@ -162,3 +160,5 @@ const styles = StyleSheet.create({
         margin: 5,
     }
 });
+
+export default EvaluationScreen

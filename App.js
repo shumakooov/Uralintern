@@ -1,16 +1,14 @@
 import React, {useState} from 'react';
 import { StyleSheet, View, Text, Image,SafeAreaView} from 'react-native';
-import Profile from './components/Profile';
-import SignIn from './components/SignIn';
-import TeamEvaluation from './components/TeamEvaluation';
- 
- 
+import AppNavigation from "./navigation/AppNavigation";
+
+
 export default function App() {
   return(
-    <Profile />
+    <AppNavigation />
   )
 }
- 
+
 const styles = StyleSheet.create({
-  
+
 });
