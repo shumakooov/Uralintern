@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import { StyleSheet, View, Text, Image,SafeAreaView, ScrollView} from 'react-native';
+import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
 
 const InterpreterScreen = () => (
     <View style={styles.back}>
         <ScrollView>
-            <SafeAreaView>
+            <SafeAreaView style={SafeAreaViewAndroid.AndroidSafeArea}>
                 <Text style={styles.textTopic}>Персональный отчёт</Text>
             </SafeAreaView>
             <View style={styles.evaluation}>
