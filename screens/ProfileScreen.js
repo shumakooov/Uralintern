@@ -11,9 +11,15 @@ const ProfileScreen = () => (
         <View style={styles.info}>
           <Image style={styles.imgStyle} source={require('../images/test_img.jpg')} />
           <View style={styles.fioStyle}>
-            <Text style={styles.textFioStyle}>Фамилия</Text>
-            <Text style={styles.textFioStyle}>Имя</Text>
-            <Text style={styles.textFioStyle}>Отчество</Text>
+            <View style={styles.underline}>
+              <Text style={styles.textFioStyle}>Фамилия</Text>
+            </View>
+            <View style={styles.underline}>
+                <Text style={styles.textFioStyle}>Имя</Text>
+            </View>
+            <View style={styles.underline}>
+                <Text style={styles.textFioStyle}>Отчество</Text>
+            </View>
           </View>
         </View>
         <View style={styles.teamStyle}>
@@ -21,105 +27,97 @@ const ProfileScreen = () => (
           <View style={styles.team}>
             <Image style={styles.imgStyleTeam} source={require('../images/test_img1.jpeg')} />
             <Text style={styles.textTeamFio}>Обабков Илья</Text>
-            <Text style={styles.textTeamRole}>Роль1</Text>
+            <Text style={styles.textTeamRole}>Дизайнер</Text>
           </View>
           <View style={styles.team}>
             <Image style={styles.imgStyleTeam} source={require('../images/test_img2.png')} />
             <Text style={styles.textTeamFio}>Шадрин Денис</Text>
-            <Text style={styles.textTeamRole}>Роль2</Text>
+            <Text style={styles.textTeamRole}>Тимлид</Text>
           </View>
           <View style={styles.team}>
             <Image style={styles.imgStyleTeam} source={require('../images/test_img3.jpg')} />
             <Text style={styles.textTeamFio}>Степаненко Андрей</Text>
-            <Text style={styles.textTeamRole}>Роль3</Text>
+            <Text style={styles.textTeamRole}>Программист</Text>
           </View>
           <View style={styles.team}>
             <Image style={styles.imgStyleTeam} source={require('../images/test_img4.jpg')} />
             <Text style={styles.textTeamFio}>Ботов Михаил</Text>
-            <Text style={styles.textTeamRole}>Роль4</Text>
+            <Text style={styles.textTeamRole}>Программист</Text>
+          </View>
+          <View style={styles.team}>
+            <Image style={styles.imgStyleTeam} source={require('../images/test_img4.jpg')} />
+            <Text style={styles.textTeamFio}>Кох Елена</Text>
+            <Text style={styles.textTeamRole}>Аналитик</Text>
           </View>
         </View>
         </ScrollView>
-        <View style={styles.footerStyle}>
-          <Image style={styles.imgFooter} source={require('../images/test_img5.png')} />
-          <Image style={styles.imgFooter} source={require('../images/test_img6.png')} />
-          <Image style={styles.imgFooter} source={require('../images/test_img7.png')} />
-        </View>
   </View>
 )
 
 
 const styles = StyleSheet.create({
-  imgFooter: {
-    width:30,
-    height:30,
-    marginLeft:50,
-    marginRight:50,
+  underline: {
+    borderStyle: "solid",
+    borderColor: '#ffcc00',
+    borderBottomWidth: 1.5,
+    width: '135%',
   },
 
-  footerStyle:{
-    flexDirection: 'row',
-    flexWrap: 'nowrap',
-    justifyContent: 'space-between',
-    height: 50,
-    backgroundColor: '#ffffff',
-    alignItems:'center'
-  },
   team:{
     flexDirection: 'row',
     flexWrap: 'nowrap',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingBottom:30,
-
+    paddingBottom: '7%',
+    marginLeft: '6%'
   },
 
   imgStyleTeam:{
-    width: 70,
-    height: 75,
-    borderRadius: 35,
-    marginLeft: 10,
-    flexBasis: '20%'
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+
   },
   textTeamFio:{
     flexBasis: '50%',
     color: 'white',
     fontSize: 17,
-    marginLeft: 20,
+    marginLeft: '3%',
+    paddingRight: '3%'
   },
   textTeamRole:{
     color: 'white',
-    fontSize: 17,
+    fontSize: 15,
     flexBasis: '30%',
-
+    paddingRight: '1%'
   },
 
   textTeam:{
     textAlign: 'center',
     color: '#ffcc00',
     fontSize: 22,
-    marginTop: 20,
-    marginBottom: 15
+    marginTop: '7%',
+    marginBottom: '12%'
   },
 
   teamStyle:{
     flex: 0.7,
-    margin: 10,
+    margin: '3%',
     backgroundColor: '#3f3f3f',
     borderRadius: 40,
     justifyContent: 'space-between'
   },
 
   textFioStyle:{
-  color: 'white',
-  fontSize: 20,
-  margin: 5,
-  textDecorationLine: 'underline',
-  textDecorationColor: '#ffcc00',
+    color: 'white',
+    fontSize: 20,
+    margin: '2%',
+    textDecorationColor: '#ffcc00',
+    textAlign: 'center'
   },
 
   fioStyle:{
-    marginRight: 70,
+    marginRight: '15%',
     alignItems: 'center'
   },
 
@@ -127,13 +125,13 @@ const styles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 60,
-    marginLeft: 30
+    marginLeft: '7%',
   },
 
   info:{
-    height: 150,
+    height: '27%',
     backgroundColor: '#3f3f3f',
-    margin: 10,
+    margin: '3%',
     borderRadius: 40,
     flexWrap: 'nowrap',
     flexDirection: 'row',
@@ -150,7 +148,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#ffcc00',
     fontSize: 24,
-    margin: 5,
+    margin: '2%',
     fontWeight: 'bold'
   }
 });

@@ -50,18 +50,15 @@ const EvaluationScreen = () => (
             <Text style={styles.infoText}>Информация по оценкам</Text>
           </View>
           </ScrollView>
-        <View style={styles.footerStyle}>
-          <Image style={styles.imgFooter} source={require('../images/test_img5.png')} />
-          <Image style={styles.imgFooter} source={require('../images/test_img6.png')} />
-          <Image style={styles.imgFooter} source={require('../images/test_img7.png')} />
-        </View>
     </View>
 )
 
 const styles = StyleSheet.create({
     listText:{
         fontSize: 16,
-        color: '#ffcc00'
+        color: '#ffcc00',
+        paddingTop: 5,
+        paddingBottom: 5
     },
 
     list:{
@@ -122,24 +119,8 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         backgroundColor: '#393939',
         marginTop: 35,
-        width: 200,
-        borderColor: '#ffcc00'
-  },
-
-    footerStyle:{
-        flexDirection: 'row',
-        flexWrap: 'nowrap',
-        height: 50,
-        backgroundColor: '#ffffff',
-        alignItems:'center',
-        justifyContent: 'flex-end'
-  },
-
-    imgFooter: {
-        width:30,
-        height:30,
-        marginLeft:50,
-        marginRight:50,
+        width: '60%',
+        borderColor: '#ffcc00',
   },
 
     infoImg:{

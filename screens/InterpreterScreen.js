@@ -43,11 +43,6 @@ const InterpreterScreen = () => (
                 <Text style={styles.competencies}>Командность</Text>
             </View>
         </ScrollView>
-        <View style={styles.footerStyle}>
-            <Image style={styles.imgFooter} source={require('../images/test_img5.png')} />
-            <Image style={styles.imgFooter} source={require('../images/test_img6.png')} />
-            <Image style={styles.imgFooter} source={require('../images/test_img7.png')} />
-        </View>
     </View>
 )
 
@@ -80,12 +75,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#393939',
     },
-    imgFooter: {
-        width:30,
-        height:30,
-        marginLeft:50,
-        marginRight:50,
-    },
     textTopic:{
         textAlign: 'center',
         color: '#ffcc00',
@@ -94,14 +83,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 25,
         marginTop: 10
-    },
-    footerStyle:{
-        flexDirection: 'row',
-        flexWrap: 'nowrap',
-        height: 65,
-        backgroundColor: '#ffffff',
-        alignItems:'center',
-        justifyContent: 'flex-end'
     },
 });
 
