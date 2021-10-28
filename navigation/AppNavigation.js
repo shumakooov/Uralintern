@@ -15,7 +15,7 @@ const AppNavigation = createBottomTabNavigator({
     Evaluation: {
         screen: EvaluationScreen,
         navigationOptions:{
-            title: 'Оценка'
+            title: 'Оценка ауе'
         }
     },
     Interpreter: {
