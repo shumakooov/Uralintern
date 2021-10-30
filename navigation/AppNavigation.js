@@ -23,9 +23,11 @@ const Tabs = () => {
                 tabBarIcon: ({focused}) => (
                     <View style={{top: 10}}>
                       <Image
-                        source = {require('../images/test_img5.png')}
+                        source = {require('../images/evaluation_img.png')}
                         style={{
-                            tintColor: focused ? '#ffcc00' : '#000'
+                            tintColor: focused ? '#ffcc00' : '#000',
+                            width:95,
+                            height:95,
                         }}
                       />
                     </View>
@@ -35,9 +37,11 @@ const Tabs = () => {
                 tabBarIcon: ({focused}) => (
                     <View style={{top: 10}}>
                         <Image
-                            source = {require('../images/test_img6.png')}
+                            source = {require('../images/profile_img.png')}
                             style={{
-                                tintColor: focused ? '#ffcc00' : '#000'
+                                tintColor: focused ? '#ffcc00' : '#000',
+                                width:100,
+                                height:100,
                             }}
                         />
                     </View>
@@ -47,9 +51,11 @@ const Tabs = () => {
                 tabBarIcon: ({focused}) => (
                     <View style={{top: 10}}>
                         <Image
-                            source = {require('../images/test_img7.png')}
+                            source = {require('../images/interpreter_img.png')}
                             style={{
-                                tintColor: focused ? '#ffcc00' : '#000'
+                                tintColor: focused ? '#ffcc00' : '#000',
+                                width:95,
+                                height:95,
                             }}
                         />
                     </View>
