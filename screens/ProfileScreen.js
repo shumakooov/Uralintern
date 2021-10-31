@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { StyleSheet, View, Text, Image,SafeAreaView, ScrollView} from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
+import {responsiveHeight, responsiveWidth, responsiveFontSize} from "react-native-responsive-dimensions";
 
 
 const ProfileScreen = () => (
@@ -74,21 +75,21 @@ const styles = StyleSheet.create({
   },
 
   imgStyleTeam:{
-    width: 50,
-    height: 50,
+    width: responsiveHeight(5),
+    height: responsiveHeight(5),
     borderRadius: 25,
 
   },
   textTeamFio:{
     flexBasis: '50%',
     color: 'white',
-    fontSize: 17,
+    fontSize: responsiveFontSize(2),
     marginLeft: '3%',
     paddingRight: '3%'
   },
   textTeamRole:{
     color: 'white',
-    fontSize: 15,
+    fontSize: responsiveFontSize(1.8),
     flexBasis: '30%',
     paddingRight: '1%'
   },
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
   textTeam:{
     textAlign: 'center',
     color: '#ffcc00',
-    fontSize: 22,
+    fontSize: responsiveFontSize(2.7),
     marginTop: '7%',
     marginBottom: '12%'
   },
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
 
   textFioStyle:{
     color: 'white',
-    fontSize: 20,
+    fontSize: responsiveFontSize(2.5),
     margin: '2%',
     textDecorationColor: '#ffcc00',
     textAlign: 'center'
@@ -123,8 +124,8 @@ const styles = StyleSheet.create({
   },
 
   imgStyle:{
-    width: 120,
-    height: 120,
+    width: responsiveHeight(13),
+    height: responsiveHeight(13),
     borderRadius: 60,
     marginLeft: '7%',
   },
@@ -148,7 +149,7 @@ const styles = StyleSheet.create({
   textTopic:{
     textAlign: 'center',
     color: '#ffcc00',
-    fontSize: 24,
+    fontSize: responsiveFontSize(3),
     margin: '2%',
     fontWeight: 'bold'
   }

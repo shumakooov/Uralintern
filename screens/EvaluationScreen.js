@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { StyleSheet, View, Text, Image, SafeAreaView, TextInput, Button, TouchableHighlight, TouchableNativeFeedback, ScrollView} from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
+import {responsiveFontSize} from "react-native-responsive-dimensions";
 
 
 const EvaluationScreen = () => (
@@ -56,7 +57,7 @@ const EvaluationScreen = () => (
 
 const styles = StyleSheet.create({
     listText:{
-        fontSize: 16,
+        fontSize: responsiveFontSize(2),
         color: '#ffcc00',
         paddingTop: 5,
         paddingBottom: 5
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
     textTopic:{
         textAlign: 'center',
         color: '#ffcc00',
-        fontSize: 24,
+        fontSize: responsiveFontSize(3),
         margin: 5,
         fontWeight: 'bold',
         marginBottom: 25,
@@ -102,14 +103,14 @@ const styles = StyleSheet.create({
     competencesTopic:{
         textAlign: 'center',
         color: '#ffcc00',
-        fontSize: 20,
+        fontSize: responsiveFontSize(2.7),
         fontWeight: 'bold',
   },
 
     competencesItems:{
         textAlign: 'center',
         color: '#ffcc00',
-        fontSize: 18,
+        fontSize: responsiveFontSize(2.2),
         margin: 20,
         marginBottom: 50
   },
@@ -138,7 +139,7 @@ const styles = StyleSheet.create({
 
     infoText: {
         color: '#ffcc00',
-        fontSize: 16,
+        fontSize: responsiveFontSize(1.8),
         margin: 5,
     }
 });

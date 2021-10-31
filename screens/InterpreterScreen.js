@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { StyleSheet, View, Text, Image,SafeAreaView, ScrollView} from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
+import {responsiveFontSize} from "react-native-responsive-dimensions";
 
 const InterpreterScreen = () => (
     <View style={styles.back}>
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
     competencies:{
         textAlign: 'left',
         color: '#ffcc00',
-        fontSize: 16,
+        fontSize: responsiveFontSize(2),
         marginLeft: 25,
         marginBottom: 15,
         marginTop: 10
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
     EvaluationText:{
         textAlign: 'center',
         color: '#ffcc00',
-        fontSize: 20,
+        fontSize: responsiveFontSize(2.5),
         margin: 5,
         marginBottom: 25,
         marginTop: 10
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     textTopic:{
         textAlign: 'center',
         color: '#ffcc00',
-        fontSize: 24,
+        fontSize: responsiveFontSize(2.8),
         margin: 5,
         fontWeight: 'bold',
         marginBottom: 25,
