@@ -52,26 +52,25 @@ const styles = StyleSheet.create({
     competencies:{
         textAlign: 'left',
         color: '#ffcc00',
-        fontSize: responsiveFontSize(2),
-        marginLeft: 25,
-        marginBottom: 15,
-        marginTop: 10
+        fontSize: responsiveFontSize(1.3),
+        marginLeft: '7%',
+        marginBottom: '5%',
+        marginTop: '3%'
 
     },
     EvaluationText:{
         textAlign: 'center',
         color: '#ffcc00',
-        fontSize: responsiveFontSize(2.5),
-        margin: 5,
-        marginBottom: 25,
-        marginTop: 10
+        fontSize: responsiveFontSize(2),
+        marginBottom: '8%',
+        marginTop: '3%'
     },
     evaluation:{
         backgroundColor: '#3f3f3f',
         borderRadius: 30,
-        marginHorizontal:20,
-        paddingBottom:25,
-        marginBottom:25
+        marginHorizontal: '3%',
+        paddingBottom: '6%',
+        marginBottom: '6%'
     },
     back:{
         flex: 1,
@@ -80,11 +79,10 @@ const styles = StyleSheet.create({
     textTopic:{
         textAlign: 'center',
         color: '#ffcc00',
-        fontSize: responsiveFontSize(2.8),
-        margin: 5,
+        fontSize: responsiveFontSize(2.1),
         fontWeight: 'bold',
-        marginBottom: 25,
-        marginTop: 10
+        marginBottom: '8%',
+        marginTop: '2%'
     },
 });
 

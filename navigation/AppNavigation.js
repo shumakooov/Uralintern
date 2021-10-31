@@ -28,6 +28,7 @@ const Tabs = () => {
                             tintColor: focused ? '#ffcc00' : '#000',
                             width:95,
                             height:95,
+                            marginBottom: '5%'
                         }}
                       />
                     </View>
@@ -42,6 +43,7 @@ const Tabs = () => {
                                 tintColor: focused ? '#ffcc00' : '#000',
                                 width:100,
                                 height:100,
+                                marginBottom: '5%'
                             }}
                         />
                     </View>
@@ -56,6 +58,7 @@ const Tabs = () => {
                                 tintColor: focused ? '#ffcc00' : '#000',
                                 width:95,
                                 height:95,
+                                marginBottom: '5%'
                             }}
                         />
                     </View>

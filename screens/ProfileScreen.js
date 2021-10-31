@@ -83,13 +83,13 @@ const styles = StyleSheet.create({
   textTeamFio:{
     flexBasis: '50%',
     color: 'white',
-    fontSize: responsiveFontSize(2),
+    fontSize: responsiveFontSize(1.3),
     marginLeft: '3%',
     paddingRight: '3%'
   },
   textTeamRole:{
     color: 'white',
-    fontSize: responsiveFontSize(1.8),
+    fontSize: responsiveFontSize(1.3),
     flexBasis: '30%',
     paddingRight: '1%'
   },
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   textTeam:{
     textAlign: 'center',
     color: '#ffcc00',
-    fontSize: responsiveFontSize(2.7),
+    fontSize: responsiveFontSize(2),
     marginTop: '7%',
     marginBottom: '12%'
   },
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
 
   textFioStyle:{
     color: 'white',
-    fontSize: responsiveFontSize(2.5),
+    fontSize: responsiveFontSize(1.7),
     margin: '2%',
     textDecorationColor: '#ffcc00',
     textAlign: 'center'
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
   textTopic:{
     textAlign: 'center',
     color: '#ffcc00',
-    fontSize: responsiveFontSize(3),
+    fontSize: responsiveFontSize(2.1),
     margin: '2%',
     fontWeight: 'bold'
   }

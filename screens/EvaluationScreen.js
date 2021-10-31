@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { StyleSheet, View, Text, Image, SafeAreaView, TextInput, Button, TouchableHighlight, TouchableNativeFeedback, ScrollView} from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
-import {responsiveFontSize} from "react-native-responsive-dimensions";
+import {responsiveFontSize, responsiveWidth} from "react-native-responsive-dimensions";
 
 
 const EvaluationScreen = () => (
@@ -57,20 +57,20 @@ const EvaluationScreen = () => (
 
 const styles = StyleSheet.create({
     listText:{
-        fontSize: responsiveFontSize(2),
+        fontSize: responsiveFontSize(1.3),
         color: '#ffcc00',
-        paddingTop: 5,
-        paddingBottom: 5
+        paddingTop: '1%',
+        paddingBottom: '1%'
     },
 
     list:{
         borderWidth: 2,
         borderColor: '#ffcc00',
         width: '70%',
-        padding: 5,
-        marginBottom: 20,
+        padding: '1%',
+        marginBottom: '5%',
         borderRadius: 10,
-        paddingLeft: 10,
+        paddingLeft: '3%',
         backgroundColor: '#282828',
         marginHorizontal:'15%',
     },
@@ -78,69 +78,69 @@ const styles = StyleSheet.create({
     back:{
         flex: 1,
         backgroundColor: '#393939',
-  },
+    },
 
     textTopic:{
         textAlign: 'center',
         color: '#ffcc00',
-        fontSize: responsiveFontSize(3),
-        margin: 5,
+        fontSize: responsiveFontSize(2.1),
+        margin: '5%',
         fontWeight: 'bold',
-        marginBottom: 25,
-        marginTop: 10
-  },
+        marginBottom: '7%',
+        marginTop: '2%'
+    },
 
     competences:{
         flex: 0.91,
         backgroundColor: '#3f3f3f',
-        margin: 10,
+        margin: '3%',
         borderRadius: 40,
         flexWrap: 'nowrap',
         alignItems: 'center',
-        padding: 30
-  },
+        padding: '7%'
+    },
 
     competencesTopic:{
         textAlign: 'center',
         color: '#ffcc00',
-        fontSize: responsiveFontSize(2.7),
+        fontSize: responsiveFontSize(2),
         fontWeight: 'bold',
-  },
+    },
 
     competencesItems:{
         textAlign: 'center',
         color: '#ffcc00',
-        fontSize: responsiveFontSize(2.2),
-        margin: 20,
-        marginBottom: 50
-  },
+        fontSize: responsiveFontSize(1.7),
+        margin: '7%',
+        marginBottom: '20%'
+    },
 
     buttonStyle:{
         borderStyle: 'solid',
         borderRadius: 10,
         borderWidth: 2,
         backgroundColor: '#393939',
-        marginTop: 35,
+        marginTop: '10%',
         width: '60%',
         borderColor: '#ffcc00',
-  },
+    },
 
     infoImg:{
-        height: 25,
-        width: 25,
-  },
+        height: responsiveWidth(6),
+        width: responsiveWidth(6),
+    },
 
     infoScores:{
         flexDirection: 'row',
         flexWrap: 'nowrap',
-        paddingBottom: 10,
+        paddingBottom: '10%',
         justifyContent: 'center'
     },
 
     infoText: {
         color: '#ffcc00',
-        fontSize: responsiveFontSize(1.8),
-        margin: 5,
+        fontSize: responsiveFontSize(1.3),
+        margin: '1%',
     }
 });
 
