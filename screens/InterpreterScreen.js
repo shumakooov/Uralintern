@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     competencies:{
         textAlign: 'left',
         color: '#ffcc00',
-        fontSize: responsiveFontSize(1.3),
+        fontSize: responsiveFontSize(2),
         marginLeft: '7%',
         marginBottom: '5%',
         marginTop: '3%'
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     EvaluationText:{
         textAlign: 'center',
         color: '#ffcc00',
-        fontSize: responsiveFontSize(2),
+        fontSize: responsiveFontSize(2.5),
         marginBottom: '8%',
         marginTop: '3%'
     },
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     textTopic:{
         textAlign: 'center',
         color: '#ffcc00',
-        fontSize: responsiveFontSize(2.1),
+        fontSize: responsiveFontSize(3),
         fontWeight: 'bold',
         marginBottom: '8%',
         marginTop: '2%'

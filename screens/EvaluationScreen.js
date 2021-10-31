@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { StyleSheet, View, Text, Image, SafeAreaView, TextInput, Button, TouchableHighlight, TouchableNativeFeedback, ScrollView} from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
-import {responsiveFontSize, responsiveWidth} from "react-native-responsive-dimensions";
+import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
 
 
 const EvaluationScreen = () => (
@@ -57,7 +57,7 @@ const EvaluationScreen = () => (
 
 const styles = StyleSheet.create({
     listText:{
-        fontSize: responsiveFontSize(1.3),
+        fontSize: responsiveFontSize(2),
         color: '#ffcc00',
         paddingTop: '1%',
         paddingBottom: '1%'
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     textTopic:{
         textAlign: 'center',
         color: '#ffcc00',
-        fontSize: responsiveFontSize(2.1),
+        fontSize: responsiveFontSize(3),
         margin: '5%',
         fontWeight: 'bold',
         marginBottom: '7%',
@@ -103,14 +103,14 @@ const styles = StyleSheet.create({
     competencesTopic:{
         textAlign: 'center',
         color: '#ffcc00',
-        fontSize: responsiveFontSize(2),
+        fontSize: responsiveFontSize(2.5),
         fontWeight: 'bold',
     },
 
     competencesItems:{
         textAlign: 'center',
         color: '#ffcc00',
-        fontSize: responsiveFontSize(1.7),
+        fontSize: responsiveFontSize(2.2),
         margin: '7%',
         marginBottom: '20%'
     },
@@ -126,8 +126,8 @@ const styles = StyleSheet.create({
     },
 
     infoImg:{
-        height: responsiveWidth(6),
-        width: responsiveWidth(6),
+        height: responsiveHeight(3),
+        width: responsiveWidth(6.4),
     },
 
     infoScores:{
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
 
     infoText: {
         color: '#ffcc00',
-        fontSize: responsiveFontSize(1.3),
+        fontSize: responsiveFontSize(1.8),
         margin: '1%',
     }
 });
