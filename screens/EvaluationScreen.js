@@ -2,7 +2,26 @@ import React, {useState} from 'react';
 import { StyleSheet, View, Text, Image, SafeAreaView, TextInput, Button, TouchableHighlight, TouchableNativeFeedback, ScrollView} from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
 import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
+import RadioButton from '../components/RadioButton';
 
+const PROP = [
+    {
+        key: 'samsung',
+        text: '-2',
+    },
+    {
+        key: 'apple',
+        text: '-1',
+    },
+    {
+        key: 'motorola',
+        text: '0',
+    },
+    {
+        key: 'lenovo',
+        text: '1',
+    },
+];
 
 const EvaluationScreen = () => (
     <View style={styles.back}>
@@ -23,6 +42,9 @@ const EvaluationScreen = () => (
 
             <View>
                 <Text style={styles.competencesItems}>Вовлеченность</Text>
+                <View style={styles.container}>
+                    <RadioButton PROP={PROP} />
+                </View>
             </View>
 
             <View>

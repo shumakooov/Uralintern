@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import {StyleSheet, TouchableNativeFeedback, View, Button, Image, SafeAreaView, TextInput} from 'react-native'
 import { useAuth } from './useAuth'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import {responsiveFontSize} from "react-native-responsive-dimensions";
 
 const AuthForm = () => {
 	const [email, setEmail] = useState('')
@@ -12,11 +13,11 @@ const AuthForm = () => {
 
 	const authHandler = async () => {
 		if (email && password) {
-			if (email !== 'test@mail.ru') {
+			if (email !== '1') {
 				return setError('Неверный Email')
 			}
 
-			if (password !== '12345') {
+			if (password !== '1') {
 				return setError('Неверный пароль')
 			}
 
@@ -30,7 +31,7 @@ const AuthForm = () => {
 	return (
 		<SafeAreaView style={styles.back}>
 			{/* {error && <Error message={error} />} */}
-			{/* <Image style={styles.logo} source={require('./images/logo.png')} /> */}
+			<Image style={styles.logo} source={require('../../images/logo.png')} />
 			<View>
 				<TextInput style={styles.default} value={email} onChangeText={setEmail} placeholder='Email..'
 						   placeholderTextColor="#c2a947" keyboardType="email-address"/>
@@ -56,35 +57,32 @@ const AuthForm = () => {
 const styles = StyleSheet.create({
 	logo:{
 		flex: 0.4,
-		width: 300,
-		height: 300,
-		marginLeft: 45,
-		marginBottom: 50,
-		marginTop: 50
+		width: '76%',
+		height: '76%',
+		marginLeft: '12%',
+		marginBottom: '13%',
+		marginTop: '13%'
 	},
 
 	buttonStyle:{
 		borderStyle: 'solid',
 		borderRadius: 10,
 		backgroundColor: '#ffcc00',
-		marginTop: 35,
 		width: '45%',
-		marginLeft: 100
+		marginTop: '9%',
+		marginLeft: '27%'
 	},
 
 	default:{
 		borderStyle: 'solid',
 		borderColor: 'white',
-		borderWidth: 2,
-		borderLeftWidth: 0,
-		borderTopWidth: 0,
-		borderRightWidth: 0,
-		margin: 10,
-		padding: 10,
+		borderBottomWidth: 2,
+		margin: '2%',
+		padding: '2%',
 		width: '70%',
 		color: '#ffcc00',
-		fontSize: 20,
-		marginLeft: 55,
+		fontSize: responsiveFontSize(2.2),
+		marginLeft: '15%',
 
 	},
 
