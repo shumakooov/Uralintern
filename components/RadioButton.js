@@ -37,26 +37,27 @@ export default class RadioButton extends Component {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        justifyContent: 'flex-start',
-        flexDirection: 'row'
+        justifyContent: 'space-between',
+        flexDirection: 'row',
     },
     radioText: {
-        fontSize: 20,
+        fontSize: 18,
         color: '#000',
-        fontWeight: '700'
+        fontWeight: '600'
     },
     radioCircle: {
         height: 40,
         width: 40,
         borderRadius: 100,
-        borderWidth: 2,
-        borderColor: '#3740ff',
+        borderWidth: 1,
+        borderColor: '#ffcc00',
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: '#fff'
     },
     selectedRb: {
-        width: 15,
-        height: 15,
+        borderWidth: 1,
+        borderColor: '#000',
         borderRadius: 50,
         backgroundColor: '#3740ff',
     },

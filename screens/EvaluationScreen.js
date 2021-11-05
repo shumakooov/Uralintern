@@ -49,14 +49,23 @@ const EvaluationScreen = () => (
 
             <View>
                 <Text style={styles.competencesItems}>Организованность</Text>
+                <View style={styles.container}>
+                    <RadioButton PROP={PROP} />
+                </View>
             </View>
 
             <View>
                 <Text style={styles.competencesItems}>Обучаемость</Text>
+                <View style={styles.container}>
+                    <RadioButton PROP={PROP} />
+                </View>
             </View>
 
             <View>
                 <Text style={styles.competencesItems}>Командность</Text>
+                <View style={styles.container}>
+                    <RadioButton PROP={PROP} />
+                </View>
             </View>
 
             <View style={styles.buttonStyle}>
