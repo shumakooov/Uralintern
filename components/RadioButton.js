@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         fontWeight: '600'
     },
     radioCircle: {
-        height: responsiveHeight(4.5),
+        height: responsiveHeight(4.49),
         width: responsiveWidth(9.5),
         borderRadius: 100,
         borderWidth: 1,
