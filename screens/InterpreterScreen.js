@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { StyleSheet, View, Text, Image,SafeAreaView, ScrollView} from 'react-native';
+import {StyleSheet, View, Text, Image, SafeAreaView, ScrollView, Dimensions} from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
 import {responsiveFontSize} from "react-native-responsive-dimensions";
 

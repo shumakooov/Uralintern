@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
 
 export default class RadioButton extends Component {
     state = {
@@ -11,10 +12,10 @@ export default class RadioButton extends Component {
         const { value } = this.state;
 
         return (
-            <View>
+            <View style={styles.container}>
                 {PROP.map(res => {
                     return (
-                        <View key={res.key} style={styles.container}>
+                        <View key={res.key}>
 
                             <TouchableOpacity
                                 style={styles.radioCircle}
@@ -24,7 +25,7 @@ export default class RadioButton extends Component {
                                     });
                                 }}>
                                 <Text style={styles.radioText}>{res.text}</Text>
-                                {value === res.key && <View style={styles.selectedRb} />}
+                                {value === res.key}
                             </TouchableOpacity>
                         </View>
                     );
@@ -36,18 +37,18 @@ export default class RadioButton extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
-        justifyContent: 'space-between',
+        marginTop: '4%',
         flexDirection: 'row',
+        justifyContent: "space-between"
     },
     radioText: {
-        fontSize: 18,
+        fontSize: responsiveFontSize(2),
         color: '#000',
         fontWeight: '600'
     },
     radioCircle: {
-        height: 40,
-        width: 40,
+        height: responsiveHeight(4.5),
+        width: responsiveWidth(9.5),
         borderRadius: 100,
         borderWidth: 1,
         borderColor: '#ffcc00',
@@ -56,10 +57,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     selectedRb: {
+        height: responsiveHeight(4.5),
+        width: responsiveWidth(9.5),
+        borderRadius: 100,
         borderWidth: 1,
-        borderColor: '#000',
-        borderRadius: 50,
-        backgroundColor: '#3740ff',
+        borderColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#ffcc00',
     },
 
 });

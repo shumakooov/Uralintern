@@ -16,11 +16,9 @@ const AuthForm = () => {
 			if (email !== '1') {
 				return setError('Неверный Email')
 			}
-
 			if (password !== '1') {
 				return setError('Неверный пароль')
 			}
-
 			await AsyncStorage.setItem('token', 'w23eefq234Ad')
 			setIsAuth(true)
 		} else {

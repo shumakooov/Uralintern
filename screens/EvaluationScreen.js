@@ -6,20 +6,20 @@ import RadioButton from '../components/RadioButton';
 
 const PROP = [
     {
-        key: 'samsung',
-        text: '-2',
-    },
-    {
-        key: 'apple',
+        key: 'key1',
         text: '-1',
     },
     {
-        key: 'motorola',
+        key: 'key2',
         text: '0',
     },
     {
-        key: 'lenovo',
+        key: 'key3',
         text: '1',
+    },
+    {
+        key: 'key4',
+        text: '2',
     },
 ];
 
@@ -40,28 +40,28 @@ const EvaluationScreen = () => (
         <View style={styles.competences}>
             <Text style={styles.competencesTopic}>Компетенции</Text>
 
-            <View>
+            <View style={styles.helpContainer}>
                 <Text style={styles.competencesItems}>Вовлеченность</Text>
                 <View style={styles.container}>
                     <RadioButton PROP={PROP} />
                 </View>
             </View>
 
-            <View>
+            <View style={styles.helpContainer}>
                 <Text style={styles.competencesItems}>Организованность</Text>
                 <View style={styles.container}>
                     <RadioButton PROP={PROP} />
                 </View>
             </View>
 
-            <View>
+            <View style={styles.helpContainer}>
                 <Text style={styles.competencesItems}>Обучаемость</Text>
                 <View style={styles.container}>
                     <RadioButton PROP={PROP} />
                 </View>
             </View>
 
-            <View>
+            <View style={styles.helpContainer}>
                 <Text style={styles.competencesItems}>Командность</Text>
                 <View style={styles.container}>
                     <RadioButton PROP={PROP} />
@@ -87,6 +87,9 @@ const EvaluationScreen = () => (
 )
 
 const styles = StyleSheet.create({
+    helpContainer:{
+        width: responsiveWidth(70),
+    },
     listText:{
         fontSize: responsiveFontSize(2),
         color: '#ffcc00',
@@ -143,7 +146,7 @@ const styles = StyleSheet.create({
         color: '#ffcc00',
         fontSize: responsiveFontSize(2.2),
         margin: '7%',
-        marginBottom: '20%'
+        marginBottom: '1%'
     },
 
     buttonStyle:{
