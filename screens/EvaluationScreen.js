@@ -42,30 +42,22 @@ const EvaluationScreen = () => (
 
             <View style={styles.helpContainer}>
                 <Text style={styles.competencesItems}>Вовлеченность</Text>
-                <View style={styles.container}>
                     <RadioButton PROP={PROP} />
-                </View>
             </View>
 
             <View style={styles.helpContainer}>
                 <Text style={styles.competencesItems}>Организованность</Text>
-                <View style={styles.container}>
                     <RadioButton PROP={PROP} />
-                </View>
             </View>
 
             <View style={styles.helpContainer}>
                 <Text style={styles.competencesItems}>Обучаемость</Text>
-                <View style={styles.container}>
                     <RadioButton PROP={PROP} />
-                </View>
             </View>
 
             <View style={styles.helpContainer}>
                 <Text style={styles.competencesItems}>Командность</Text>
-                <View style={styles.container}>
                     <RadioButton PROP={PROP} />
-                </View>
             </View>
 
             <View style={styles.buttonStyle}>

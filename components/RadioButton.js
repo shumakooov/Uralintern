@@ -25,7 +25,7 @@ export default class RadioButton extends Component {
                                     });
                                 }}>
                                 <Text style={styles.radioText}>{res.text}</Text>
-                                {value === res.key}
+                                {value === res.key && <View style={styles.selectedRb}/>}
                             </TouchableOpacity>
                         </View>
                     );
