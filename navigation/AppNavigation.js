@@ -19,6 +19,7 @@ const Tabs = () => {
             screenOptions={{
                 headerShown: false
             }}
+            initialRouteName="Profile"
         >
             <Tab.Screen name={'Evaluation'} component={EvaluationScreen} options={{
                 tabBarIcon: ({focused}) => (
