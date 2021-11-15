@@ -31,6 +31,7 @@ const AuthForm = () => {
 	const authHandler = async () => {
 		let a = await req();
 		if (a.user.email !== '') {
+
 			await AsyncStorage.setItem('token', a.user.token)
 			setIsAuth(true)
 		} else {
