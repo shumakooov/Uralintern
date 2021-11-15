@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, View, Text, Image, SafeAreaView, ScrollView, Dimensions} from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
 import {responsiveFontSize} from "react-native-responsive-dimensions";
+import {VictoryChart, VictoryBar, VictoryTheme} from "victory-native"
 
 const InterpreterScreen = () => (
     <View style={styles.back}>
@@ -15,6 +16,13 @@ const InterpreterScreen = () => (
                 <Text style={styles.competencies}>Организованность</Text>
                 <Text style={styles.competencies}>Обучаемость</Text>
                 <Text style={styles.competencies}>Командность</Text>
+
+                <View>
+                    <VictoryChart theme={VictoryTheme.material}>
+                        
+                    </VictoryChart>
+                </View>
+
             </View>
             <View style={styles.evaluation}>
                 <Text style={styles.EvaluationText}>Самооценка</Text>
