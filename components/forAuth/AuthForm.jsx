@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import {StyleSheet, TouchableNativeFeedback, View, Button, Image, SafeAreaView, TextInput} from 'react-native'
+import {StyleSheet, TouchableNativeFeedback, View, Button, Image, SafeAreaView, TextInput, Alert} from 'react-native'
 import { useAuth } from './useAuth'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {responsiveFontSize} from "react-native-responsive-dimensions";
@@ -8,21 +8,35 @@ const AuthForm = () => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const [error, setError] = useState('')
-
 	const { isAuth, setIsAuth } = useAuth()
 
+	async function req() {
+		let url = 'http://sharosuc.beget.tech/api/user/login';
+		let res = await fetch(url, {
+			method: 'POST',
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				user: {
+					email: email,
+					password: password
+				}
+			})
+		});
+		return await res.json()
+	}
+
 	const authHandler = async () => {
-		if (email && password) {
-			if (email !== '1') {
-				return setError('Неверный Email')
-			}
-			if (password !== '1') {
-				return setError('Неверный пароль')
-			}
-			await AsyncStorage.setItem('token', 'w23eefq234Ad')
+		let a = await req();
+		if (a.user.email !== '') {
+			await AsyncStorage.setItem('token', a.user.token)
 			setIsAuth(true)
 		} else {
-			setError('Заполните все поля!')
+			Alert.alert("Ошибка", "Введены неверные данные", [
+				{ text: "OK"},
+			])
 		}
 	}
 
