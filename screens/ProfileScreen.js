@@ -1,60 +1,99 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { StyleSheet, View, Text, Image,SafeAreaView, ScrollView} from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
 import {responsiveHeight, responsiveWidth, responsiveFontSize} from "react-native-responsive-dimensions";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+// async function getToken() {
+//   console.log(await AsyncStorage.getItem('token'))
+//   let a = await getInfoApi()
+//   console.log(a)
+//   let fio = a.trainee.username.split(' ')
+//   console.log(fio[0]+ ' ' + fio[1])
+// }
+// async function getInfoApi() {
+//     let url = 'http://sharosuc.beget.tech/api/trainee/team';
+//     let res = await fetch(url, {
+//       method: 'GET',
+//       headers: {
+//         Accept: 'application/json',
+//         'Content-Type': 'application/json',
+//         'Authorization': 'Token ' + await AsyncStorage.getItem('token')
+//       },
+//     });
+// }
 
 
-const ProfileScreen = () => (
+const ProfileScreen = () => {
+  // const [posts, setPosts] = useState([]);
+  //
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const result = await fetch('http://sharosuc.beget.tech/api/trainee/team', {
+  //       method: 'GET',
+  //       headers: {
+  //         Accept: 'application/json',
+  //         'Content-Type': 'application/json',
+  //         'Authorization': 'Token ' + await AsyncStorage.getItem('token')
+  //       },
+  //     })
+  //     let data = await result.json();
+  //     setPosts(data);
+  //   };
+  //   fetchData();
+  // }, []);
+
+  return (
   <View style={styles.container}>
     <ScrollView>
-    <SafeAreaView style={SafeAreaViewAndroid.AndroidSafeArea}>
-      <Text style={styles.textTopic}>Профиль</Text>
+      <SafeAreaView style={SafeAreaViewAndroid.AndroidSafeArea}>
+        <Text style={styles.textTopic}>Профиль</Text>
       </SafeAreaView>
-        <View style={styles.info}>
-          <Image style={styles.imgStyle} source={require('../images/test_img.jpg')} />
-          <View style={styles.fioStyle}>
-            <View style={styles.underline}>
-              <Text style={styles.textFioStyle}>Фамилия</Text>
-            </View>
-            <View style={styles.underline}>
-                <Text style={styles.textFioStyle}>Имя</Text>
-            </View>
-            <View style={styles.underline}>
-                <Text style={styles.textFioStyle}>Отчество</Text>
-            </View>
+      <View style={styles.info}>
+        <Image style={styles.imgStyle} source={require('../images/test_img.jpg')}/>
+        <View style={styles.fioStyle}>
+          <View style={styles.underline}>
+            <Text style={styles.textFioStyle}>Имя</Text>
+          </View>
+          <View style={styles.underline}>
+            <Text style={styles.textFioStyle}>Фамилия</Text>
+          </View>
+          <View style={styles.underline}>
+            <Text style={styles.textFioStyle}>Отчество</Text>
           </View>
         </View>
-        <View style={styles.teamStyle}>
-          <Text style={styles.textTeam}>Ваша команда №1</Text>
-          <View style={styles.team}>
-            <Image style={styles.imgStyleTeam} source={require('../images/test_img1.jpeg')} />
-            <Text style={styles.textTeamFio}>Обабков Илья</Text>
-            <Text style={styles.textTeamRole}>Дизайнер</Text>
-          </View>
-          <View style={styles.team}>
-            <Image style={styles.imgStyleTeam} source={require('../images/test_img2.png')} />
-            <Text style={styles.textTeamFio}>Шадрин Денис</Text>
-            <Text style={styles.textTeamRole}>Тимлид</Text>
-          </View>
-          <View style={styles.team}>
-            <Image style={styles.imgStyleTeam} source={require('../images/test_img3.jpg')} />
-            <Text style={styles.textTeamFio}>Степаненко Андрей</Text>
-            <Text style={styles.textTeamRole}>Программист</Text>
-          </View>
-          <View style={styles.team}>
-            <Image style={styles.imgStyleTeam} source={require('../images/test_img4.jpg')} />
-            <Text style={styles.textTeamFio}>Ботов Михаил</Text>
-            <Text style={styles.textTeamRole}>Программист</Text>
-          </View>
-          <View style={styles.team}>
-            <Image style={styles.imgStyleTeam} source={require('../images/test_img4.jpg')} />
-            <Text style={styles.textTeamFio}>Кох Елена</Text>
-            <Text style={styles.textTeamRole}>Аналитик</Text>
-          </View>
+      </View>
+      <View style={styles.teamStyle}>
+        <Text style={styles.textTeam}>Ваша команда №1</Text>
+        <View style={styles.team}>
+          <Image style={styles.imgStyleTeam} source={require('../images/test_img1.jpeg')}/>
+          <Text style={styles.textTeamFio}>Обабков Илья</Text>
+          <Text style={styles.textTeamRole}>Дизайнер</Text>
         </View>
-        </ScrollView>
+        <View style={styles.team}>
+          <Image style={styles.imgStyleTeam} source={require('../images/test_img2.png')}/>
+          <Text style={styles.textTeamFio}>Шадрин Денис</Text>
+          <Text style={styles.textTeamRole}>Тимлид</Text>
+        </View>
+        <View style={styles.team}>
+          <Image style={styles.imgStyleTeam} source={require('../images/test_img3.jpg')}/>
+          <Text style={styles.textTeamFio}>Степаненко Андрей</Text>
+          <Text style={styles.textTeamRole}>Программист</Text>
+        </View>
+        <View style={styles.team}>
+          <Image style={styles.imgStyleTeam} source={require('../images/test_img4.jpg')}/>
+          <Text style={styles.textTeamFio}>Ботов Михаил</Text>
+          <Text style={styles.textTeamRole}>Программист</Text>
+        </View>
+        <View style={styles.team}>
+          <Image style={styles.imgStyleTeam} source={require('../images/test_img4.jpg')}/>
+          <Text style={styles.textTeamFio}>Кох Елена</Text>
+          <Text style={styles.textTeamRole}>Аналитик</Text>
+        </View>
+      </View>
+    </ScrollView>
   </View>
-)
+  )}
 
 
 const styles = StyleSheet.create({
