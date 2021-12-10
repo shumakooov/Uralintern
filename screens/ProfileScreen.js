@@ -2,166 +2,34 @@ import React, {useEffect, useState} from 'react';
 import { StyleSheet, View, Text, Image,SafeAreaView, ScrollView} from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
 import {responsiveHeight, responsiveWidth, responsiveFontSize} from "react-native-responsive-dimensions";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
-// async function getToken() {
-//   console.log(await AsyncStorage.getItem('token'))
-//   let a = await getInfoApi()
-//   console.log(a)
-//   let fio = a.trainee.username.split(' ')
-//   console.log(fio[0]+ ' ' + fio[1])
-// }
-// async function getInfoApi() {
-//     let url = 'http://sharosuc.beget.tech/api/trainee/team';
-//     let res = await fetch(url, {
-//       method: 'GET',
-//       headers: {
-//         Accept: 'application/json',
-//         'Content-Type': 'application/json',
-//         'Authorization': 'Token ' + await AsyncStorage.getItem('token')
-//       },
-//     });
-// }
+import FIO from "./FioComponent";
+import Team from "./TeamComponent";
 
 
 const ProfileScreen = () => {
-  // const [posts, setPosts] = useState([]);
-  //
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const result = await fetch('http://sharosuc.beget.tech/api/trainee/team', {
-  //       method: 'GET',
-  //       headers: {
-  //         Accept: 'application/json',
-  //         'Content-Type': 'application/json',
-  //         'Authorization': 'Token ' + await AsyncStorage.getItem('token')
-  //       },
-  //     })
-  //     let data = await result.json();
-  //     setPosts(data);
-  //   };
-  //   fetchData();
-  // }, []);
 
   return (
   <View style={styles.container}>
     <ScrollView>
+
       <SafeAreaView style={SafeAreaViewAndroid.AndroidSafeArea}>
         <Text style={styles.textTopic}>Профиль</Text>
       </SafeAreaView>
+
       <View style={styles.info}>
         <Image style={styles.imgStyle} source={require('../images/test_img.jpg')}/>
-        <View style={styles.fioStyle}>
-          <View style={styles.underline}>
-            <Text style={styles.textFioStyle}>Имя</Text>
-          </View>
-          <View style={styles.underline}>
-            <Text style={styles.textFioStyle}>Фамилия</Text>
-          </View>
-          <View style={styles.underline}>
-            <Text style={styles.textFioStyle}>Отчество</Text>
-          </View>
-        </View>
+         <FIO></FIO>
       </View>
-      <View style={styles.teamStyle}>
-        <Text style={styles.textTeam}>Ваша команда №1</Text>
-        <View style={styles.team}>
-          <Image style={styles.imgStyleTeam} source={require('../images/test_img1.jpeg')}/>
-          <Text style={styles.textTeamFio}>Обабков Илья</Text>
-          <Text style={styles.textTeamRole}>Дизайнер</Text>
-        </View>
-        <View style={styles.team}>
-          <Image style={styles.imgStyleTeam} source={require('../images/test_img2.png')}/>
-          <Text style={styles.textTeamFio}>Шадрин Денис</Text>
-          <Text style={styles.textTeamRole}>Тимлид</Text>
-        </View>
-        <View style={styles.team}>
-          <Image style={styles.imgStyleTeam} source={require('../images/test_img3.jpg')}/>
-          <Text style={styles.textTeamFio}>Степаненко Андрей</Text>
-          <Text style={styles.textTeamRole}>Программист</Text>
-        </View>
-        <View style={styles.team}>
-          <Image style={styles.imgStyleTeam} source={require('../images/test_img4.jpg')}/>
-          <Text style={styles.textTeamFio}>Ботов Михаил</Text>
-          <Text style={styles.textTeamRole}>Программист</Text>
-        </View>
-        <View style={styles.team}>
-          <Image style={styles.imgStyleTeam} source={require('../images/test_img4.jpg')}/>
-          <Text style={styles.textTeamFio}>Кох Елена</Text>
-          <Text style={styles.textTeamRole}>Аналитик</Text>
-        </View>
-      </View>
+
+      <Team></Team>
+
     </ScrollView>
   </View>
   )}
 
 
 const styles = StyleSheet.create({
-  underline: {
-    borderStyle: "solid",
-    borderColor: '#ffcc00',
-    borderBottomWidth: 1.5,
-    width: '135%',
-  },
-
-  team:{
-    flexDirection: 'row',
-    flexWrap: 'nowrap',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingBottom: '7%',
-    marginLeft: '6%'
-  },
-
-  imgStyleTeam:{
-    width: responsiveWidth(11),
-    height: responsiveHeight(5),
-    borderRadius: 25,
-
-  },
-  textTeamFio:{
-    flexBasis: '50%',
-    color: 'white',
-    fontSize: responsiveFontSize(2.1),
-    marginLeft: '3%',
-    paddingRight: '3%'
-  },
-  textTeamRole:{
-    color: 'white',
-    fontSize: responsiveFontSize(1.8),
-    flexBasis: '30%',
-    paddingRight: '1%'
-  },
-
-  textTeam:{
-    textAlign: 'center',
-    color: '#ffcc00',
-    fontSize: responsiveFontSize(2.7),
-    marginTop: '7%',
-    marginBottom: '12%'
-  },
-
-  teamStyle:{
-    flex: 0.7,
-    margin: '3%',
-    backgroundColor: '#3f3f3f',
-    borderRadius: 40,
-    justifyContent: 'space-between'
-  },
-
-  textFioStyle:{
-    color: 'white',
-    fontSize: responsiveFontSize(2.6),
-    margin: '2%',
-    textDecorationColor: '#ffcc00',
-    textAlign: 'center'
-  },
-
-  fioStyle:{
-    marginRight: '15%',
-    alignItems: 'center'
-  },
-
   imgStyle:{
     width: responsiveWidth(28),
     height: responsiveHeight(13),
