@@ -65,7 +65,6 @@ const EvaluationScreen = () => (
                     <Button
                     title="Сохранить оценки"
                     color='#ffcc00'
-
                     />
                 </TouchableNativeFeedback>
             </View>

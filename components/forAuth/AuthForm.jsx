@@ -7,7 +7,6 @@ import {responsiveFontSize} from "react-native-responsive-dimensions";
 const AuthForm = () => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-	const [error, setError] = useState('')
 	const { isAuth, setIsAuth } = useAuth()
 
 	async function req() {
@@ -30,19 +29,18 @@ const AuthForm = () => {
 
 	const authHandler = async () => {
 		let a = await req();
-		if (a.user.email !== '') {
-			await AsyncStorage.setItem('token', a.user.token)
-			setIsAuth(true)
-		} else {
+		try {
+				await AsyncStorage.setItem('token', a.user.token)
+				setIsAuth(true)
+		} catch (e) {
 			Alert.alert("Ошибка", "Введены неверные данные", [
-				{ text: "OK"},
+				{text: "OK"},
 			])
 		}
 	}
 
 	return (
 		<SafeAreaView style={styles.back}>
-			{/* {error && <Error message={error} />} */}
 			<Image style={styles.logo} source={require('../../images/logo.png')} />
 			<View>
 				<TextInput style={styles.default} value={email} onChangeText={setEmail} placeholder='Email..'
@@ -95,14 +93,12 @@ const styles = StyleSheet.create({
 		color: '#ffcc00',
 		fontSize: responsiveFontSize(2.2),
 		marginLeft: '15%',
-
 	},
 
 	back:{
 		flex: 1,
 		backgroundColor: '#393939',
 		justifyContent: 'flex-start',
-
 	}
 });
 
