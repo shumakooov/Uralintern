@@ -11,7 +11,7 @@ const AuthForm = () => {
 	const { isAuth, setIsAuth } = useAuth()
 
 	async function req() {
-		let url = 'http://sharosuc.beget.tech/api/user/login';
+		let url = 'http://studprzi.beget.tech/api/user/login';
 		let res = await fetch(url, {
 			method: 'POST',
 			headers: {

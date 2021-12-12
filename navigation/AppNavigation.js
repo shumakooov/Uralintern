@@ -1,23 +1,22 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import React, {Component} from 'react';
-import { View, Image, StyleSheet} from 'react-native'
+import { View, Image, StyleSheet, Text} from 'react-native'
 
 import EvaluationScreen from "../screens/EvaluationScreen";
 import InterpreterScreen from "../screens/InterpreterScreen";
 import ProfileScreen from "../screens/ProfileScreen";
-import {responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
+import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
 
 const Tab = createBottomTabNavigator();
 
 const Tabs = () => {
     return(
         <Tab.Navigator
-            tabBarOptions={{
-                showLabel: false,
-
-            }}
             screenOptions={{
                 headerShown: false
+            }}
+            tabBarOptions={{
+                showLabel: false
             }}
             initialRouteName="Profile"
         >
@@ -25,7 +24,7 @@ const Tabs = () => {
                 tabBarIcon: ({focused}) => (
                     <View style={{top: '30%'}}>
                       <Image
-                        source = {require('../images/evaluation_img.png')}
+                        source = {require('../images/interpreter_img.png')}
                         style={{
                             tintColor: focused ? '#ffcc00' : '#000',
                             width: responsiveWidth(11),
@@ -33,6 +32,7 @@ const Tabs = () => {
                             marginBottom: '5%'
                         }}
                       />
+                      <Text style={styles.footerText}>Оценка</Text>
                     </View>
                 )
             }}/>
@@ -45,9 +45,10 @@ const Tabs = () => {
                                 tintColor: focused ? '#ffcc00' : '#000',
                                 width: responsiveWidth(11.5),
                                 height: responsiveHeight(11.5),
-                                marginBottom: '5%'
+                                marginBottom: '5%',
                             }}
                         />
+                        <Text style={styles.footerText}>Профиль</Text>
                     </View>
                 )
             }}/>
@@ -55,20 +56,31 @@ const Tabs = () => {
                 tabBarIcon: ({focused}) => (
                     <View style={{top: '30%'}}>
                         <Image
-                            source = {require('../images/interpreter_img.png')}
+                            source = {require('../images/evaluation_img.png')}
                             style={{
                                 tintColor: focused ? '#ffcc00' : '#000',
                                 width: responsiveWidth(11),
                                 height: responsiveHeight(11),
-                                marginBottom: '5%'
+                                marginBottom: '5%',
+
                             }}
                         />
+                        <Text style={styles.footerText}>Отчет</Text>
                     </View>
                 )
             }}/>
         </Tab.Navigator>
     );
 }
+
+const styles = StyleSheet.create({
+    footerText: {
+        color: '#000',
+        fontSize: responsiveFontSize(1.5),
+        top: -35
+
+    }
+})
 
 
 export default Tabs;

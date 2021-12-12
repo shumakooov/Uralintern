@@ -24,9 +24,9 @@ export default class RadioButton extends Component {
                                         value: res.key,
                                     });
                                 }}>
-                                <Text style={styles.radioText}>{res.text}</Text>
                                 {value === res.key && <View style={styles.selectedRb}/>}
                             </TouchableOpacity>
+                            <Text style={styles.radioText}>{res.text}</Text>
                         </View>
                     );
                 })}
@@ -43,25 +43,27 @@ const styles = StyleSheet.create({
     },
     radioText: {
         fontSize: responsiveFontSize(2),
-        color: '#000',
-        fontWeight: '600'
+        color: 'gold',
+        fontWeight: '600',
+        textAlign: 'center',
+        top: 5
     },
     radioCircle: {
-        height: responsiveHeight(4.49),
+        height: responsiveHeight(4.5),
         width: responsiveWidth(9.5),
         borderRadius: 100,
         borderWidth: 1,
         borderColor: '#ffcc00',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#fff'
+        backgroundColor: '#808080'
     },
     selectedRb: {
         height: responsiveHeight(4.5),
         width: responsiveWidth(9.5),
         borderRadius: 100,
         borderWidth: 1,
-        borderColor: '#fff',
+        borderColor: '#ffcc00',
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#ffcc00',
