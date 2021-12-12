@@ -6,7 +6,6 @@ import axios from "axios";
 
 const FIO = () => {
     const[dataset, setDataset] = React.useState({});
-    console.log(dataset)
 
     const getData = async() => {
         try{
@@ -14,7 +13,6 @@ const FIO = () => {
             if (token != null){
                 const data = await axios.get('http://studprzi.beget.tech/api/trainee/team', {headers: {Authorization: 'Token ' + token}})
                 setDataset(data.data)
-                console.log(dataset.team.team_name)
             }
 
         }catch(e){
@@ -60,7 +58,7 @@ const styles = StyleSheet.create({
 
     fioStyle:{
         marginRight: '15%',
-        alignItems: 'center'
+        alignItems: 'center',
     },
 
 })

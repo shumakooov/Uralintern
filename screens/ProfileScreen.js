@@ -3,8 +3,8 @@ import { StyleSheet, View, Text, Image,SafeAreaView, ScrollView} from 'react-nat
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
 import {responsiveHeight, responsiveWidth, responsiveFontSize} from "react-native-responsive-dimensions";
 
-import FIO from "./FioComponent";
-import Team from "./TeamComponent";
+import FIO from "../components/forProfileScreen/FioComponent";
+import Team from "../components/forProfileScreen/TeamComponent";
 
 
 const ProfileScreen = () => {

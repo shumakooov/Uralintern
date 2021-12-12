@@ -3,10 +3,10 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import {Image, StyleSheet, Text, View} from "react-native";
 import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
 import axios from "axios";
+import {elementsThatOverlapOffsets} from "react-native-web/dist/vendor/react-native/VirtualizeUtils";
 
 const Team = () => {
     const[dataset, setDataset] = React.useState({});
-    console.log(dataset)
 
     const getData = async() => {
         try{
@@ -28,32 +28,17 @@ const Team = () => {
 
     return (
         <View style={styles.teamStyle}>
-            <Text style={styles.textTeam}>Ваша команда №1</Text>
-            <View style={styles.team}>
-                <Image style={styles.imgStyleTeam} source={require('../images/test_img1.jpeg')}/>
-                <Text style={styles.textTeamFio}>Обабков Илья</Text>
-                <Text style={styles.textTeamRole}>Дизайнер</Text>
-            </View>
-            <View style={styles.team}>
-                <Image style={styles.imgStyleTeam} source={require('../images/test_img2.png')}/>
-                <Text style={styles.textTeamFio}>Шадрин Денис</Text>
-                <Text style={styles.textTeamRole}>Тимлид</Text>
-            </View>
-            <View style={styles.team}>
-                <Image style={styles.imgStyleTeam} source={require('../images/test_img3.jpg')}/>
-                <Text style={styles.textTeamFio}>Степаненко Андрей</Text>
-                <Text style={styles.textTeamRole}>Программист</Text>
-            </View>
-            <View style={styles.team}>
-                <Image style={styles.imgStyleTeam} source={require('../images/test_img4.jpg')}/>
-                <Text style={styles.textTeamFio}>Ботов Михаил</Text>
-                <Text style={styles.textTeamRole}>Программист</Text>
-            </View>
-            <View style={styles.team}>
-                <Image style={styles.imgStyleTeam} source={require('../images/test_img4.jpg')}/>
-                <Text style={styles.textTeamFio}>Кох Елена</Text>
-                <Text style={styles.textTeamRole}>Аналитик</Text>
-            </View>
+            {dataset.team ? <Text style={styles.textTeam}>Команда {' "' + dataset.team[0].team_name + '"'}</Text> : <Text style={styles.textTeam}>Загрузка...</Text>}
+            {dataset.team ? dataset.team.map(user => (
+                <React.Fragment>
+                    <View style={styles.team}>
+                        <Image style={styles.imgStyleTeam} source={require('../../images/test_img1.jpeg')}/>
+                        <Text style={styles.textTeamFio}>{user.username.split(' ')[0] + ' ' + user.username.split(' ')[1]}</Text>
+                        <Text style={styles.textTeamRole}>{user.internship}</Text>
+                    </View>
+                </React.Fragment>
+                )) : <Text style={styles.textTeam}>Загрузка...</Text>
+            }
         </View>
     )
 }
@@ -65,7 +50,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         paddingBottom: '7%',
-        marginLeft: '6%'
+        marginLeft: '6%',
     },
 
     imgStyleTeam:{
@@ -101,18 +86,7 @@ const styles = StyleSheet.create({
         margin: '3%',
         backgroundColor: '#3f3f3f',
         borderRadius: 40,
-        justifyContent: 'space-between'
-    },
-
-    info:{
-        height: '27%',
-        backgroundColor: '#3f3f3f',
-        margin: '3%',
-        borderRadius: 40,
-        flexWrap: 'nowrap',
-        flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
     },
 
 });
