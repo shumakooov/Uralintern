@@ -1,43 +1,20 @@
 import React from 'react';
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import {Image, StyleSheet, Text, View} from "react-native";
 import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
-import axios from "axios";
-import {elementsThatOverlapOffsets} from "react-native-web/dist/vendor/react-native/VirtualizeUtils";
 
-const Team = () => {
-    const[dataset, setDataset] = React.useState({});
-
-    const getData = async() => {
-        try{
-            const token = await AsyncStorage.getItem('token');
-            if (token != null){
-                const data = await axios.get('http://studprzi.beget.tech/api/trainee/team', {headers: {Authorization: 'Token ' + token}})
-                setDataset(data.data)
-            }
-
-        }catch(e){
-            console.log(e.message);
-        }
-    }
-
-    React.useEffect(() => {
-            getData()
-        },
-        []);
-
+const Team = props => {
     return (
         <View style={styles.teamStyle}>
-            {dataset.team ? <Text style={styles.textTeam}>Команда {' "' + dataset.team[0].team_name + '"'}</Text> : <Text style={styles.textTeam}>Загрузка...</Text>}
-            {dataset.team ? dataset.team.map(user => (
+            <Text style={styles.textTeam}>Команда {' "' + props.team[0].team_name + '"'}</Text>
+            {props.team.map(user => (
                 <React.Fragment>
                     <View style={styles.team}>
-                        <Image style={styles.imgStyleTeam} source={require('../../images/test_img1.jpeg')}/>
+                        <Image source={user.image !== null ?  {uri: props.mediaImg + user.image} : require('../../images/zaglushka.png')} style={styles.imgStyleTeam} />
                         <Text style={styles.textTeamFio}>{user.username.split(' ')[0] + ' ' + user.username.split(' ')[1]}</Text>
                         <Text style={styles.textTeamRole}>{user.internship}</Text>
                     </View>
                 </React.Fragment>
-                )) : <Text style={styles.textTeam}>Загрузка...</Text>
+            ))
             }
         </View>
     )

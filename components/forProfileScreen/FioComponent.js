@@ -1,46 +1,44 @@
 import React from 'react';
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import {StyleSheet, Text, View} from "react-native";
-import {responsiveFontSize} from "react-native-responsive-dimensions";
-import axios from "axios";
+import {Image, StyleSheet, Text, View} from "react-native";
+import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
 
-const FIO = () => {
-    const[dataset, setDataset] = React.useState({});
-
-    const getData = async() => {
-        try{
-            const token = await AsyncStorage.getItem('token');
-            if (token != null){
-                const data = await axios.get('http://studprzi.beget.tech/api/trainee/team', {headers: {Authorization: 'Token ' + token}})
-                setDataset(data.data)
-            }
-
-        }catch(e){
-            console.log(e.message);
-        }
-    }
-
-    React.useEffect(() => {
-            getData()
-        },
-        []);
+const FIO = props => {
 
     return (
-        <View style={styles.fioStyle}>
-                <View style={styles.underline}>
-                    {dataset.trainee ? <Text style={styles.textFioStyle}>{dataset.trainee.username.split(' ')[0]}</Text> : <Text style={styles.textFioStyle}>Загрузка...</Text>}
-                </View>
-                <View style={styles.underline}>
-                    {dataset.trainee ? <Text style={styles.textFioStyle}>{dataset.trainee.username.split(' ')[1]}</Text > : <Text style={styles.textFioStyle}>Загрузка...</Text>}
-                </View>
-                <View style={styles.underline}>
-                    { dataset.trainee? <Text style={styles.textFioStyle}>{dataset.trainee.username.split(' ')[2]}</Text> : <Text style={styles.textFioStyle}>Загрузка...</Text>}
-                </View>
+        <View style={styles.info }>
+            <Image source={props.trainee.image !== null ?  {uri: props.mediaImg + props.trainee.image} : require('../../images/zaglushka.png')} style={styles.imgStyle} />
+            <View style={styles.fioStyle}>
+                { props.trainee.username.split(' ').map(user => (
+                <React.Fragment>
+                    <View style={styles.underline}>
+                        <Text style={styles.textFioStyle}>{user}</Text>
+                    </View>
+                </React.Fragment>
+            ))}
+            </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    imgStyle:{
+        width: responsiveWidth(28),
+        height: responsiveHeight(13),
+        borderRadius: 60,
+        marginLeft: '7%',
+    },
+
+    info:{
+        height: '27%',
+        backgroundColor: '#3f3f3f',
+        margin: '3%',
+        borderRadius: 40,
+        flexWrap: 'nowrap',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+    },
+
     underline: {
         borderStyle: "solid",
         borderColor: '#ffcc00',

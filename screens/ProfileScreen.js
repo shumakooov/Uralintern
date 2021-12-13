@@ -1,52 +1,55 @@
-import React, {useEffect, useState} from 'react';
-import { StyleSheet, View, Text, Image,SafeAreaView, ScrollView} from 'react-native';
+import React from 'react';
+import {StyleSheet, View, Text, Image, SafeAreaView, ScrollView, ActivityIndicator} from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
-import {responsiveHeight, responsiveWidth, responsiveFontSize} from "react-native-responsive-dimensions";
+import {responsiveFontSize} from "react-native-responsive-dimensions";
 
 import FIO from "../components/forProfileScreen/FioComponent";
 import Team from "../components/forProfileScreen/TeamComponent";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 
 const ProfileScreen = () => {
+  const[dataset, setDataset] = React.useState({});
+
+  const getData = async() => {
+    try{
+      const token = await AsyncStorage.getItem('token');
+      if (token != null){
+        const data = await axios.get('http://studprzi.beget.tech/api/trainee/team', {headers: {Authorization: 'Token ' + token}})
+        setDataset(data.data)
+      }
+
+    }catch(e){
+      console.log(e.message);
+    }
+  }
+
+  React.useEffect(() => {
+        getData()
+      },
+      []);
+
+  const media = 'http://studprzi.beget.tech/'
 
   return (
-  <View style={styles.container}>
-    <ScrollView>
-
-      <SafeAreaView style={SafeAreaViewAndroid.AndroidSafeArea}>
-        <Text style={styles.textTopic}>Профиль</Text>
-      </SafeAreaView>
-
-      <View style={styles.info}>
-        <Image style={styles.imgStyle} source={require('../images/test_img.jpg')}/>
-         <FIO></FIO>
+      <View style={styles.container}>
+        <ScrollView>
+          <SafeAreaView style={SafeAreaViewAndroid.AndroidSafeArea}>
+            <Text style={styles.textTopic}>Профиль</Text>
+          </SafeAreaView>
+          { dataset.trainee && dataset.team ?
+              <>
+            <FIO trainee = {dataset.trainee} mediaImg = {media}/>
+            <Team team = {dataset.team} mediaImg = {media}/>
+              </> : <ActivityIndicator animating={true} size="large" color="#ffcc00" />
+          }
+        </ScrollView>
       </View>
-
-      <Team></Team>
-
-    </ScrollView>
-  </View>
   )}
 
 
 const styles = StyleSheet.create({
-  imgStyle:{
-    width: responsiveWidth(28),
-    height: responsiveHeight(13),
-    borderRadius: 60,
-    marginLeft: '7%',
-  },
-
-  info:{
-    height: '27%',
-    backgroundColor: '#3f3f3f',
-    margin: '3%',
-    borderRadius: 40,
-    flexWrap: 'nowrap',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center'
-  },
 
   container:{
     flex: 1,
