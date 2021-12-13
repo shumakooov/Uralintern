@@ -15,7 +15,8 @@ import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-nativ
 import RadioButton from '../components/RadioButton';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-import EvaluationInfo from "../components/forEvauationScreen/InfoEvaluation";
+import EvaluationInfo from '../components/forEvaluationScreen/InfoEvaluation';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 
 const PROP = [
@@ -58,6 +59,13 @@ const EvaluationScreen = () => {
         []);
     console.log(dataset)
 
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState(null);
+    const [items, setItems] = useState([
+        {label: 'Apple', value: 'apple'},
+        {label: 'Banana', value: 'banana'}
+    ]);
+
     return (
         <View style={styles.back}>
             <ScrollView>
@@ -65,11 +73,39 @@ const EvaluationScreen = () => {
                     <Text style={styles.textTopic}>Оценка команды</Text>
                 </SafeAreaView>
                 <View style={styles.list}>
-                    <Text style={styles.listText}>Выбери мероприятие</Text>
+                    <DropDownPicker
+                        open={open}
+                        value={value}
+                        items={items}
+                        setOpen={setOpen}
+                        setValue={setValue}
+                        setItems={setItems}
+                        placeholder={"Выбери этап"}
+                        placeholderStyle={{color: '#ffcc00'}}
+                        style={styles.listText}
+                        textStyle={{color: '#ffcc00'}}
+                        dropDownContainerStyle={{backgroundColor: '#282828', borderColor: '#ffcc00', borderWidth: 2}}
+                        arrowIconStyle={{backgroundColor: '#ffcc00'}}
+                        tickIconStyle={{color: '#ffcc00'}}
+                    />
                 </View>
 
                 <View style={styles.list}>
-                    <Text style={styles.listText}>Выбери, кого будешь оценивать</Text>
+                    <DropDownPicker
+                        open={open}
+                        value={value}
+                        items={items}
+                        setOpen={setOpen}
+                        setValue={setValue}
+                        setItems={setItems}
+                        placeholder={"Выбери, кого будешь оценивать"}
+                        placeholderStyle={{color: '#ffcc00'}}
+                        zIndex={10}
+                        style={styles.listText}
+                        textStyle={{color: '#ffcc00'}}
+                        dropDownContainerStyle={{backgroundColor: '#282828', borderColor: '#ffcc00', borderWidth: 2,}}
+                        arrowIconStyle={{backgroundColor: '#ffcc00'}}
+                    />
                 </View>
 
                 <View style={styles.competences}>
@@ -122,19 +158,17 @@ const styles = StyleSheet.create({
     listText:{
         fontSize: responsiveFontSize(2),
         color: '#ffcc00',
-        paddingTop: '1%',
-        paddingBottom: '1%'
+        backgroundColor: '#282828',
+        borderWidth: 2,
+        borderColor: '#ffcc00',
+        borderRadius: 10,
     },
 
     list:{
-        borderWidth: 2,
-        borderColor: '#ffcc00',
         width: '70%',
         padding: '1%',
         marginBottom: '5%',
-        borderRadius: 10,
         paddingLeft: '3%',
-        backgroundColor: '#282828',
         marginHorizontal:'15%',
     },
 
