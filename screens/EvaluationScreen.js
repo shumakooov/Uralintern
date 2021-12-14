@@ -57,7 +57,29 @@ const EvaluationScreen = () => {
             getData()
         },
         []);
-    console.log(dataset)
+
+    const[nameteam, setNameteam] = React.useState({});
+
+    const getNameTeam = async() => {
+        try{
+            const token = await AsyncStorage.getItem('token');
+            if (token != null){
+                const data = await axios.get('http://studprzi.beget.tech/api/trainee/team',
+                    {headers: {Authorization: 'Token ' + token}})
+                let allTeam = data.data.team.map(element =>
+                    new Object({label: element.username.split(' ')[0] + ' ' + element.username.split(' ')[1], value: element.id}) )
+                setNameteam(allTeam)
+                console.log(nameteam )
+            }
+
+        }catch(e){
+            console.log(e.message);
+        }
+    }
+    React.useEffect(() => {
+            getNameTeam()
+        },
+        []);
 
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
@@ -67,10 +89,12 @@ const EvaluationScreen = () => {
     ]);
 
     const [open2, setOpen2] = useState(false);
+    const [value2, setValue2] = useState(null);
+    const [items2, setItems2] = nameteam ?  useState([nameteam]) : useState([]);
 
     return (
         <View style={styles.back}>
-            <ScrollView>
+            <ScrollView keyboardShouldPersistTaps = 'handled'>
                 <SafeAreaView style={SafeAreaViewAndroid.AndroidSafeArea}>
                     <Text style={styles.textTopic}>Оценка команды</Text>
                 </SafeAreaView>
@@ -80,6 +104,7 @@ const EvaluationScreen = () => {
                         value={value}
                         items={items}
                         setOpen={setOpen}
+                        zIndex={10}
                         setValue={setValue}
                         setItems={setItems}
                         placeholder={"Выбери этап"}
@@ -95,11 +120,11 @@ const EvaluationScreen = () => {
                 <View style={[styles.list, styles.dropbox2]}>
                     <DropDownPicker
                         open={open2}
-                        value={value}
-                        items={items}
+                        value={value2}
+                        items={items2}
                         setOpen={setOpen2}
-                        setValue={setValue}
-                        setItems={setItems}
+                        setValue={setValue2}
+                        setItems={setItems2}
                         placeholder={"Выбери, кого будешь оценивать"}
                         placeholderStyle={{color: '#ffcc00'}}
                         style={styles.listText}
