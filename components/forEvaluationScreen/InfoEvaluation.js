@@ -1,13 +1,13 @@
-import {Image, StyleSheet, Text, View} from "react-native";
+import {StyleSheet, Text, View} from "react-native";
 import React from "react";
-import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
+import {responsiveFontSize} from "react-native-responsive-dimensions";
 
 const EvaluationInfo = props => {
     return (
         <View style = {styles.evaluationInfo}>
             { props.info.descriptions.map(evaluation => (
                 <>
-                <Text style = {styles.evaluationInfoNameText}>{evaluation.name + ' '}</Text>
+                <Text style = {styles.evaluationInfoNameText}>{evaluation.name}</Text>
                 <Text style = {styles.evaluationInfoText}> {evaluation.description}</Text>
                 </>
             ))}
