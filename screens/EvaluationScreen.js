@@ -66,13 +66,15 @@ const EvaluationScreen = () => {
         {label: 'Banana', value: 'banana'}
     ]);
 
+    const [open2, setOpen2] = useState(false);
+
     return (
         <View style={styles.back}>
             <ScrollView>
                 <SafeAreaView style={SafeAreaViewAndroid.AndroidSafeArea}>
                     <Text style={styles.textTopic}>Оценка команды</Text>
                 </SafeAreaView>
-                <View style={styles.list}>
+                <View style={[styles.list, styles.dropbox1]}>
                     <DropDownPicker
                         open={open}
                         value={value}
@@ -84,26 +86,25 @@ const EvaluationScreen = () => {
                         placeholderStyle={{color: '#ffcc00'}}
                         style={styles.listText}
                         textStyle={{color: '#ffcc00'}}
-                        dropDownContainerStyle={{backgroundColor: '#282828', borderColor: '#ffcc00', borderWidth: 2}}
+                        dropDownContainerStyle={{backgroundColor: '#282828', borderColor: '#ffcc00', borderWidth: 2, zIndex: 2}}
                         arrowIconStyle={{backgroundColor: '#ffcc00'}}
                         tickIconStyle={{color: '#ffcc00'}}
                     />
                 </View>
 
-                <View style={styles.list}>
+                <View style={[styles.list, styles.dropbox2]}>
                     <DropDownPicker
-                        open={open}
+                        open={open2}
                         value={value}
                         items={items}
-                        setOpen={setOpen}
+                        setOpen={setOpen2}
                         setValue={setValue}
                         setItems={setItems}
                         placeholder={"Выбери, кого будешь оценивать"}
                         placeholderStyle={{color: '#ffcc00'}}
-                        zIndex={10}
                         style={styles.listText}
                         textStyle={{color: '#ffcc00'}}
-                        dropDownContainerStyle={{backgroundColor: '#282828', borderColor: '#ffcc00', borderWidth: 2,}}
+                        dropDownContainerStyle={{backgroundColor: '#282828', borderColor: '#ffcc00', borderWidth: 2, zIndex: 2}}
                         arrowIconStyle={{backgroundColor: '#ffcc00'}}
                     />
                 </View>
@@ -152,6 +153,14 @@ const EvaluationScreen = () => {
 }
 
 const styles = StyleSheet.create({
+    dropbox1: {
+      zIndex: 2
+    },
+
+    dropbox2: {
+      zIndex: 1
+    },
+
     helpContainer:{
         width: responsiveWidth(70),
     },
@@ -162,6 +171,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: '#ffcc00',
         borderRadius: 10,
+        zIndex: 1,
     },
 
     list:{
@@ -194,7 +204,8 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         flexWrap: 'nowrap',
         alignItems: 'center',
-        padding: '7%'
+        padding: '7%',
+        zIndex: 0,
     },
 
     competencesTopic:{
