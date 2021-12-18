@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, View, Text, Image, SafeAreaView, ScrollView, Dimensions} from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
-import {responsiveFontSize} from "react-native-responsive-dimensions";
+import {responsiveFontSize } from "react-native-responsive-dimensions";
 import {
     VictoryChart,
     VictoryBar,
@@ -11,6 +11,9 @@ import {
     VictoryLabel,
     VictoryAxis,
 } from "victory-native";
+import { YellowBox } from 'react-native';
+
+YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
 
 const InterpreterScreen = () => (
     <View style={styles.back}>

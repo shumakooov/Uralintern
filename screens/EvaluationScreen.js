@@ -12,31 +12,12 @@ import {
 } from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
 import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
-import RadioButton from '../components/RadioButton';
+import RadioBlock from '../components/RadioBlock';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import EvaluationInfo from '../components/forEvaluationScreen/InfoEvaluation';
 import DropDownPicker from 'react-native-dropdown-picker';
 
-
-const PROP = [
-    {
-        key: 'key1',
-        text: '-1',
-    },
-    {
-        key: 'key2',
-        text: '0',
-    },
-    {
-        key: 'key3',
-        text: '1',
-    },
-    {
-        key: 'key4',
-        text: '2',
-    },
-];
 
 const EvaluationScreen = () => {
     const[dataset, setDataset] = React.useState({});
@@ -48,7 +29,6 @@ const EvaluationScreen = () => {
                 const data = await axios.get('http://studprzi.beget.tech/api/grade/description', {headers: {Authorization: 'Token ' + token}})
                 setDataset(data.data)
             }
-
         }catch(e){
             console.log(e.message);
         }
@@ -69,7 +49,7 @@ const EvaluationScreen = () => {
                 let allTeam = data.data.team.map(element =>
                     new Object({label: element.username.split(' ')[0] + ' ' + element.username.split(' ')[1], value: element.id}) )
                 setNameteam(allTeam)
-                console.log(nameteam )
+
             }
 
         }catch(e){
@@ -91,6 +71,11 @@ const EvaluationScreen = () => {
     const [open2, setOpen2] = useState(false);
     const [value2, setValue2] = useState(null);
     const [items2, setItems2] = nameteam ?  useState([nameteam]) : useState([]);
+
+    const[competence1, setCompetence1] = useState();
+    const[competence2, setCompetence2] = useState();
+    const[competence3, setCompetence3] = useState();
+    const[competence4, setCompetence4] = useState();
 
     return (
         <View style={styles.back}>
@@ -139,22 +124,22 @@ const EvaluationScreen = () => {
 
                     <View style={styles.helpContainer}>
                         <Text style={styles.competencesItems}>Вовлеченность</Text>
-                        <RadioButton PROP={PROP}/>
+                        <RadioBlock setCompetence={setCompetence1}/>
                     </View>
 
                     <View style={styles.helpContainer}>
                         <Text style={styles.competencesItems}>Организованность</Text>
-                        <RadioButton PROP={PROP}/>
+                        <RadioBlock setCompetence={setCompetence2}/>
                     </View>
 
                     <View style={styles.helpContainer}>
                         <Text style={styles.competencesItems}>Обучаемость</Text>
-                        <RadioButton PROP={PROP}/>
+                        <RadioBlock setCompetence={setCompetence3}/>
                     </View>
 
                     <View style={styles.helpContainer}>
                         <Text style={styles.competencesItems}>Командность</Text>
-                        <RadioButton PROP={PROP}/>
+                        <RadioBlock setCompetence={setCompetence4}/>
                     </View>
 
                     <View style={styles.buttonStyle}>
@@ -162,6 +147,9 @@ const EvaluationScreen = () => {
                             <Button
                                 title="Сохранить оценки"
                                 color='#ffcc00'
+                                onPress={() => {
+                                    console.log(x)
+                                }}
                             />
                         </TouchableNativeFeedback>
                     </View>

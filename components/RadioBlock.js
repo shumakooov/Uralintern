@@ -1,39 +1,29 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
+import RadioButton from "./forEvaluationScreen/RadioButton";
 
-export default class RadioButton extends Component {
-    state = {
-        value: null,
-    };
+const RadioBlock = (props) => {
+    const[selectedBlock, setSelectedBlock] = React.useState();
+    const[value, setValue] = React.useState();
 
-    render() {
-        const { PROP } = this.props;
-        const { value } = this.state;
-
-        return (
-            <View style={styles.container}>
-                {PROP.map(res => {
-                    return (
-                        <View key={res.key}>
-
-                            <TouchableOpacity
-                                style={styles.radioCircle}
-                                onPress={() => {
-                                    this.setState({
-                                        value: res.key,
-                                    });
-                                }}>
-                                {value === res.key && <View style={styles.selectedRb}/>}
-                            </TouchableOpacity>
-                            <Text style={styles.radioText}>{res.text}</Text>
-                        </View>
-                    );
-                })}
-            </View>
-        );
+    const setValueLog = (value) => {
+        console.log(value)
+        setValue(value)
+        props.setCompetence(value)
     }
+
+    return (
+        <View style={styles.container}>
+            <RadioButton value={-1} blockValue={setValueLog} selectedValue={value}/>
+            <RadioButton value={0} blockValue={setValueLog} selectedValue={value}/>
+            <RadioButton value={1} blockValue={setValueLog} selectedValue={value}/>
+            <RadioButton value={2} blockValue={setValueLog} selectedValue={value}/>
+        </View>
+    );
 }
+
+export default RadioBlock;
 
 const styles = StyleSheet.create({
     container: {
