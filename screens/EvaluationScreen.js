@@ -8,7 +8,7 @@ import {
     Button,
     TouchableNativeFeedback,
     ScrollView,
-    ActivityIndicator
+    ActivityIndicator, Alert
 } from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
 import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
@@ -20,26 +20,25 @@ import DropDownPicker from 'react-native-dropdown-picker';
 
 
 const EvaluationScreen = () => {
-    const[dataset, setDataset] = React.useState({});
-
-    const getData = async() => {
+    const[infoEvaluating, setInfoEvaluating] = React.useState({});
+    const getInfoEvaluating = async() => {
         try{
             const token = await AsyncStorage.getItem('token');
             if (token != null){
                 const data = await axios.get('http://studprzi.beget.tech/api/grade/description', {headers: {Authorization: 'Token ' + token}})
-                setDataset(data.data)
+                setInfoEvaluating(data.data)
             }
         }catch(e){
             console.log(e.message);
         }
     }
     React.useEffect(() => {
-            getData()
+            getInfoEvaluating()
         },
         []);
 
-    const[nameteam, setNameteam] = React.useState({});
 
+    const[nameTeam, setNameTeam] = React.useState({});
     const getNameTeam = async() => {
         try{
             const token = await AsyncStorage.getItem('token');
@@ -48,10 +47,9 @@ const EvaluationScreen = () => {
                     {headers: {Authorization: 'Token ' + token}})
                 let allTeam = data.data.team.map(element =>
                     new Object({label: element.username.split(' ')[0] + ' ' + element.username.split(' ')[1], value: element.id}) )
-                setNameteam(allTeam)
-
+                allTeam.push(new Object({label: 'Самооценка', value: data.data.trainee.id}))
+                setNameTeam(allTeam)
             }
-
         }catch(e){
             console.log(e.message);
         }
@@ -61,106 +59,165 @@ const EvaluationScreen = () => {
         },
         []);
 
+
+    const[stage, setStage] = React.useState({});
+    const getStage = async() => {
+        try{
+            const token = await AsyncStorage.getItem('token');
+            if (token != null){
+                const data = await axios.get('http://studprzi.beget.tech/api/stage',
+                    {headers: {Authorization: 'Token ' + token}})
+                let allStage = data.data.stages.map(element =>
+                    new Object({label: element.stage_name, value: element.id}) )
+                setStage(allStage)
+            }
+        }catch(e){
+            console.log(e.message);
+        }
+    }
+    React.useEffect(() => {
+            getStage()
+        },
+        []);
+
+    const saveGrades = async () => {
+        try{
+            const allGrades = {grade:{}}
+            if (typeof competence1 !== "undefined") {
+                allGrades.grade.competence1 = competence1
+            }
+            if (typeof competence2 !== "undefined") {
+                allGrades.grade.competence2 = competence2
+            }
+            if (typeof competence3 !== "undefined") {
+                allGrades.grade.competence3 = competence3
+            }
+            if (typeof competence4 !== "undefined") {
+                allGrades.grade.competence4 = competence4
+            }
+            const token = await AsyncStorage.getItem('token');
+            if (token != null && value != null && value2 != null){
+                allGrades.grade.stage =  value
+                allGrades.grade.trainee =  value2
+                console.log(allGrades)
+                let data = await fetch('http://studprzi.beget.tech/api/grade/create-update', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        Authorization: 'Token ' + token
+                    },
+                    body: JSON.stringify(allGrades)
+                });
+                Alert.alert("Успешно", "Оценка отправлена", [
+                    {text: "OK"}])
+            } else {
+                Alert.alert("Ошибка", "Оценка не отправлена", [
+                    {text: "OK"}])
+            }
+        }catch(e){
+            Alert.alert("Ошибка", e.message, [
+                {text: "OK"}])
+        }
+    }
+
+
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
-    const [items, setItems] = useState([
-        {label: 'Apple', value: 'apple'},
-        {label: 'Banana', value: 'banana'}
-    ]);
+    const [items, setItems] = useState([]);
 
     const [open2, setOpen2] = useState(false);
     const [value2, setValue2] = useState(null);
-    const [items2, setItems2] = nameteam ?  useState([nameteam]) : useState([]);
+    const [items2, setItems2] =  useState([]);
 
     const[competence1, setCompetence1] = useState();
     const[competence2, setCompetence2] = useState();
-    const[competence3, setCompetence3 ] = useState();
+    const[competence3, setCompetence3] = useState();
     const[competence4, setCompetence4] = useState();
 
     return (
         <View style={styles.back}>
-            <ScrollView keyboardShouldPersistTaps = 'handled'>
-                <SafeAreaView style={SafeAreaViewAndroid.AndroidSafeArea}>
-                    <Text style={styles.textTopic}>Оценка команды</Text>
-                </SafeAreaView>
-                <View style={[styles.list, styles.dropbox1]}>
-                    <DropDownPicker
-                        open={open}
-                        value={value}
-                        items={items}
-                        setOpen={setOpen}
-                        zIndex={10}
-                        setValue={setValue}
-                        setItems={setItems}
-                        placeholder={"Выбери этап"}
-                        placeholderStyle={{color: '#ffcc00'}}
-                        style={styles.listText}
-                        textStyle={{color: '#ffcc00'}}
-                        dropDownContainerStyle={{backgroundColor: '#282828', borderColor: '#ffcc00', borderWidth: 2, zIndex: 2}}
-                        arrowIconStyle={{backgroundColor: '#ffcc00'}}
-                        tickIconStyle={{color: '#ffcc00'}}
-                    />
-                </View>
-
-                <View style={[styles.list, styles.dropbox2]}>
-                    <DropDownPicker
-                        open={open2}
-                        value={value2}
-                        items={items2}
-                        setOpen={setOpen2}
-                        setValue={setValue2}
-                        setItems={setItems2}
-                        placeholder={"Выбери, кого будешь оценивать"}
-                        placeholderStyle={{color: '#ffcc00'}}
-                        style={styles.listText}
-                        textStyle={{color: '#ffcc00'}}
-                        dropDownContainerStyle={{backgroundColor: '#282828', borderColor: '#ffcc00', borderWidth: 2, zIndex: 2}}
-                        arrowIconStyle={{backgroundColor: '#ffcc00'}}
-                    />
-                </View>
-
-                <View style={styles.competences}>
-                    <Text style={styles.competencesTopic}>Компетенции</Text>
-
-                    <View style={styles.helpContainer}>
-                        <Text style={styles.competencesItems}>Вовлеченность</Text>
-                        <RadioBlock setCompetence={setCompetence1}/>
-                    </View>
-
-                    <View style={styles.helpContainer}>
-                        <Text style={styles.competencesItems}>Организованность</Text>
-                        <RadioBlock setCompetence={setCompetence2}/>
-                    </View>
-
-                    <View style={styles.helpContainer}>
-                        <Text style={styles.competencesItems}>Обучаемость</Text>
-                        <RadioBlock setCompetence={setCompetence3}/>
-                    </View>
-
-                    <View style={styles.helpContainer}>
-                        <Text style={styles.competencesItems}>Командность</Text>
-                        <RadioBlock setCompetence={setCompetence4}/>
-                    </View>
-
-                    <View style={styles.buttonStyle}>
-                        <TouchableNativeFeedback>
-                            <Button
-                                title="Сохранить оценки"
-                                color='#ffcc00'
-                                onPress={() => {
-                                    console.log(x)
-                                }}
+            { nameTeam[0] && stage[0] && infoEvaluating.descriptions?
+                <>
+                    <ScrollView>
+                        <SafeAreaView style={SafeAreaViewAndroid.AndroidSafeArea}>
+                            <Text style={styles.textTopic}>Оценка команды</Text>
+                        </SafeAreaView>
+                        <View style={[styles.list, styles.dropbox1]}>
+                            <DropDownPicker
+                                open={open}
+                                value={value}
+                                items={stage}
+                                setOpen={setOpen}
+                                zIndex={10}
+                                setValue={setValue}
+                                setItems={setItems}
+                                placeholder={"Выбери этап"}
+                                placeholderStyle={{color: '#ffcc00'}}
+                                style={styles.listText}
+                                textStyle={{color: '#ffcc00'}}
+                                dropDownContainerStyle={{backgroundColor: '#282828', borderColor: '#ffcc00', borderWidth: 2, zIndex: 2}}
+                                arrowIconStyle={{backgroundColor: '#ffcc00'}}
+                                tickIconStyle={{color: '#ffcc00'}}
                             />
-                        </TouchableNativeFeedback>
-                    </View>
-                </View>
-                <View style={styles.infoScores}>
-                    <Image style={styles.infoImg} source={require('../images/info.png')}/>
-                    <Text style={styles.infoText}>Информация по оценкам</Text>
-                </View>
-                {dataset.descriptions ?
-                <EvaluationInfo info = {dataset}/> : <ActivityIndicator animating={true} size="large" color="#ffcc00" />}
-            </ScrollView>
+                        </View>
+                        <View style={[styles.list, styles.dropbox2]}>
+                            <DropDownPicker
+                                open={open2}
+                                value={value2}
+                                items={nameTeam}
+                                setOpen={setOpen2}
+                                setValue={setValue2}
+                                setItems={setItems2}
+                                placeholder={"Выбери, кого будешь оценивать"}
+                                placeholderStyle={{color: '#ffcc00'}}
+                                style={styles.listText}
+                                textStyle={{color: '#ffcc00'}}
+                                dropDownContainerStyle={{backgroundColor: '#282828', borderColor: '#ffcc00', borderWidth: 2, zIndex: 2}}
+                                arrowIconStyle={{backgroundColor: '#ffcc00'}}
+                            />
+                        </View>
+
+                        <View style={styles.competences}>
+                            <Text style={styles.competencesTopic}>Компетенции</Text>
+
+                            <View style={styles.helpContainer}>
+                                <Text style={styles.competencesItems}>Вовлеченность</Text>
+                                <RadioBlock setCompetence = {setCompetence1}/>
+                            </View>
+                            <View style={styles.helpContainer}>
+                                <Text style={styles.competencesItems}>Организованность</Text>
+                                <RadioBlock  setCompetence = {setCompetence2}/>
+                            </View>
+
+                            <View style={styles.helpContainer}>
+                                <Text style={styles.competencesItems}>Обучаемость</Text>
+                                <RadioBlock  setCompetence = {setCompetence3}/>
+                            </View>
+
+                            <View style={styles.helpContainer}>
+                                <Text style={styles.competencesItems}>Командность</Text>
+                                <RadioBlock  setCompetence = {setCompetence4}/>
+                            </View>
+
+                            <View style={styles.buttonStyle}>
+                                <TouchableNativeFeedback>
+                                    <Button
+                                        title="Сохранить оценки"
+                                        color='#ffcc00'
+                                        onPress={saveGrades}
+                                    />
+                                </TouchableNativeFeedback>
+                            </View>
+                        </View>
+                        <View style={styles.infoScores}>
+                            <Image style={styles.infoImg} source={require('../images/info.png')}/>
+                            <Text style={styles.infoText}>Информация по оценкам</Text>
+                        </View>
+                        <EvaluationInfo info = {infoEvaluating}/>
+                    </ScrollView>
+                </> : <ActivityIndicator animating={true} size="large" color="#ffcc00" />
+            }
         </View>
     )
 }

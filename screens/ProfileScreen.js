@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View, Text, Image, SafeAreaView, ScrollView, ActivityIndicator} from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
 import {responsiveFontSize} from "react-native-responsive-dimensions";
@@ -42,7 +42,10 @@ const ProfileScreen = () => {
               <>
             <FIO trainee = {dataset.trainee} mediaImg = {media}/>
             <Team team = {dataset.team} mediaImg = {media}/>
-              </> : <ActivityIndicator animating={true} size="large" color="#ffcc00" />
+              </> :
+              <View style={styles.noInfo}>
+                <ActivityIndicator animating={true} size="large" color="#ffcc00" />
+              </View>
           }
         </ScrollView>
       </View>
@@ -50,6 +53,9 @@ const ProfileScreen = () => {
 
 
 const styles = StyleSheet.create({
+  noInfo: {
+    marginTop: '20%'
+  },
 
   container:{
     flex: 1,

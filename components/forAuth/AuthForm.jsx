@@ -1,5 +1,15 @@
 import React, { useContext, useState } from 'react'
-import {StyleSheet, TouchableNativeFeedback, View, Button, Image, SafeAreaView, TextInput, Alert} from 'react-native'
+import {
+	StyleSheet,
+	TouchableNativeFeedback,
+	View,
+	Button,
+	Image,
+	SafeAreaView,
+	TextInput,
+	Alert,
+	ActivityIndicator
+} from 'react-native'
 import { useAuth } from './useAuth'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {responsiveFontSize} from "react-native-responsive-dimensions";
@@ -30,8 +40,8 @@ const AuthForm = () => {
 	const authHandler = async () => {
 		let a = await req();
 		try {
-				await AsyncStorage.setItem('token', a.user.token)
-				setIsAuth(true)
+			await AsyncStorage.setItem('token', a.user.token)
+			setIsAuth(true)
 		} catch (e) {
 			Alert.alert("Ошибка", "Введены неверные данные", [
 				{text: "OK"},
@@ -39,9 +49,16 @@ const AuthForm = () => {
 		}
 	}
 
+	const [loaded, setLoaded] = useState(false);
 	return (
 		<SafeAreaView style={styles.back}>
-			<Image style={styles.logo} source={require('../../images/logo.png')} />
+			{loaded ? null :
+				<>
+				<View style={styles.noImg}>
+					<ActivityIndicator animating={true} size="large" color="#ffcc00" />
+				</View>
+				</> }
+			<Image style={styles.logo} source={require('../../images/logo.png')}  onLoad={() => setLoaded(true)} />
 			<View>
 				<TextInput style={styles.default} value={email} onChangeText={setEmail} placeholder='Email..'
 						   placeholderTextColor="#c2a947" keyboardType="email-address"/>
@@ -65,6 +82,9 @@ const AuthForm = () => {
 }
 
 const styles = StyleSheet.create({
+	noImg: {
+		marginTop: '20%'
+	},
 	logo:{
 		flex: 0.4,
 		width: '76%',

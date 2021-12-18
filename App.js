@@ -4,30 +4,30 @@ import Main from "./components/Main";
 import {AuthContext} from "./components/forAuth/authContext";
 import {StyleSheet, View, Text} from 'react-native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
     export default function App() {
         const [isAuth, setIsAuth] = useState(false)
+        const [user, setUser] = useState({})
 
-        // async function getToken() {
-        //     let url = 'http://sharosuc.beget.tech/api/user';
-        //     let res = await fetch(url, {
-        //         method: 'GET',
-        //         headers: {
-        //             Accept: 'application/json',
-        //             'Content-Type': 'application/json',
-        //             'Authorization': 'Token ' + await AsyncStorage.getItem('token')
-        //         },
-        //     });
-        //     return await res.json()
-        // }
-
-        // let thereToken = getToken();
-        // if (thereToken.user.email !== '') {
-        //     return setIsAuth(true)
-        // } else {
-        //     return setIsAuth(false)
-        // }
-
+        const checkAuth = async() => {
+            try{
+                const token = await AsyncStorage.getItem('token');
+                if (token != null){
+                    const data = await axios.get('http://studprzi.beget.tech/api/user',
+                        {headers: {Authorization: 'Token ' + token}})
+                    setUser(data)
+                }
+            }catch(e){
+                console.log(e.message);
+            }
+        }
+        React.useEffect(() => {
+                checkAuth()
+                user.data ? setIsAuth(true) : setIsAuth(false)
+            },
+            []);
+        console.log(isAuth)
         return (
             <AuthContext.Provider value={{ isAuth, setIsAuth }}>
                 <View style={styles.container}>
