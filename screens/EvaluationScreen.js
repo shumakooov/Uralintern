@@ -74,7 +74,7 @@ const EvaluationScreen = () => {
 
     const[competence1, setCompetence1] = useState();
     const[competence2, setCompetence2] = useState();
-    const[competence3, setCompetence3] = useState();
+    const[competence3, setCompetence3 ] = useState();
     const[competence4, setCompetence4] = useState();
 
     return (

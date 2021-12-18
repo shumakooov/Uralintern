@@ -9,7 +9,7 @@ const RadioBlock = (props) => {
 
     const setValueLog = (value) => {
         setValue(value)
-        props.setCompetence(value)
+        props.setCompetence(value )
     }
 
     return (
