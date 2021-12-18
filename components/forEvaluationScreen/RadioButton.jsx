@@ -6,6 +6,7 @@ const RadioButton = (props) => {
     const[key, setKey] = React.useState();
     const[id, setId] = React.useState();
     const[value, setValue] = React.useState();
+    const[selected, setSelected] = React.useState(false);
 
     return (
         <View>
@@ -13,8 +14,10 @@ const RadioButton = (props) => {
                 style={styles.radioCircle}
                 onPress={() => {
                     props.blockValue(props.value)
-                    setValue(props.value)}}>
-                {props.selectedValue === value && <View style={styles.selectedRb}/>}
+                    setValue(props.value)
+                    setSelected(!selected)
+                }}>
+                {props.selectedValue === value && selected && <View style={styles.selectedRb}/>}
             </TouchableOpacity>
             <Text style={styles.radioText}>{props.value}</Text>
         </View>

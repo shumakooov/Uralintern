@@ -8,7 +8,6 @@ const RadioBlock = (props) => {
     const[value, setValue] = React.useState();
 
     const setValueLog = (value) => {
-        console.log(value)
         setValue(value)
         props.setCompetence(value)
     }
