@@ -10,13 +10,14 @@ import axios from "axios";
 
 
 const ProfileScreen = () => {
+  const media = 'http://studprzi.beget.tech/'
   const[dataset, setDataset] = React.useState({});
 
   const getData = async() => {
     try{
       const token = await AsyncStorage.getItem('token');
       if (token != null){
-        const data = await axios.get('http://studprzi.beget.tech/api/trainee/team', {headers: {Authorization: 'Token ' + token}})
+        const data = await axios.get(media + 'api/trainee/team', {headers: {Authorization: 'Token ' + token}})
         setDataset(data.data)
       }
 
@@ -29,8 +30,6 @@ const ProfileScreen = () => {
         getData()
       },
       []);
-
-  const media = 'http://studprzi.beget.tech/'
 
   return (
       <View style={styles.container}>

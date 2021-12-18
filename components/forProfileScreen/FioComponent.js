@@ -9,11 +9,11 @@ const FIO = props => {
             <Image source={props.trainee.image !== null ?  {uri: props.mediaImg + props.trainee.image} : require('../../images/zaglushka.png')} style={styles.imgStyle} />
             <View style={styles.fioStyle}>
                 { props.trainee.username.split(' ').map(user => (
-                <React.Fragment>
+                <>
                     <View style={styles.underline}>
                         <Text style={styles.textFioStyle}>{user}</Text>
                     </View>
-                </React.Fragment>
+                </>
             ))}
             </View>
         </View>

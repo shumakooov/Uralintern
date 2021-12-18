@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, Image, SafeAreaView, ScrollView, Dimensions} from 'react-native';
+import {StyleSheet, View, Text, Image, SafeAreaView, ScrollView, Dimensions, ActivityIndicator} from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
 import {responsiveFontSize } from "react-native-responsive-dimensions";
 import {
@@ -12,11 +12,36 @@ import {
     VictoryAxis,
 } from "victory-native";
 import { YellowBox } from 'react-native';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
 
-const InterpreterScreen = () => (
+const InterpreterScreen = () => {
+const media = 'http://studprzi.beget.tech/'
+const[grades, setGrades] = React.useState({});
+
+const getData = async() => {
+    try{
+        const token = await AsyncStorage.getItem('token');
+        if (token != null){
+            const data = await axios.get(media + 'api/grade/get/report', {headers: {Authorization: 'Token ' + token}})
+            setGrades(data.data )
+        }
+
+    }catch(e){
+        console.log(e.message);
+    }
+}
+
+React.useEffect(() => {
+        getData()
+    },
+    []);
+return (
     <View style={styles.back}>
+        {grades.rating ?
+            <>
         <ScrollView>
             <SafeAreaView style={SafeAreaViewAndroid.AndroidSafeArea}>
                 <Text style={styles.textTopic}>Персональный отчёт</Text>
@@ -38,7 +63,7 @@ const InterpreterScreen = () => (
                                 <VictoryStack
                                     colorScale={["gold"]}
                                     style={{
-                                        data: { width: 20 },
+                                        data: { width: 25 },
                                         labels: { padding: -20 }
                                     }}
                                     labelComponent={
@@ -49,10 +74,10 @@ const InterpreterScreen = () => (
                                 >
                                     <VictoryBar
                                         data={[
-                                            {x: 1, y: -1, label: "-1"},
-                                            {x: 2, y: 1, label: "1"},
-                                            {x: 3, y: 2, label: "2"},
-                                            {x: 4, y: 1.5, label: "1.5"}
+                                            {x: 1, y: grades.rating.general.competence1, label: grades.rating.general.competence1},
+                                            {x: 2, y: grades.rating.general.competence2, label: grades.rating.general.competence2},
+                                            {x: 3, y: grades.rating.general.competence3, label: grades.rating.general.competence3},
+                                            {x: 4, y: grades.rating.general.competence4, label: grades.rating.general.competence4}
                                         ]}
                                     />
                             </VictoryStack>
@@ -89,7 +114,7 @@ const InterpreterScreen = () => (
                                 <VictoryStack
                                     colorScale={["gold"]}
                                     style={{
-                                        data: { width: 20 },
+                                        data: { width: 25 },
                                         labels: { padding: -20 }
                                     }}
                                     labelComponent={
@@ -100,60 +125,10 @@ const InterpreterScreen = () => (
                                 >
                                     <VictoryBar
                                         data={[
-                                            {x: 1, y: -1, label: "-1"},
-                                            {x: 2, y: 1, label: "1"},
-                                            {x: 3, y: 2, label: "2"},
-                                            {x: 4, y: 1.5, label: "1.5"}
-                                        ]}
-                                    />
-                                </VictoryStack>
-                                <VictoryAxis crossAxis style={{
-                                    axis: {stroke: 'gold'},
-                                    tickLabels: {fill: 'none'}
-                                }}
-                                />
-                                <VictoryAxis dependentAxis style={{
-                                    axis: {stroke: 'none'},
-                                    tickLabels: {fill: 'none'}
-                                }}
-                                />
-                            </VictoryChart>
-                        </View>
-                    </View>
-                </View>
-            </View>
-            <View style={styles.evaluation}>
-                <Text style={styles.EvaluationText}>Куратор</Text>
-                <View style={{flexDirection: 'row'}}>
-                    <View>
-                        <Text style={styles.competencies}>Вовлечённость</Text>
-                        <Text style={styles.competencies}>Организованность</Text>
-                        <Text style={styles.competencies}>Обучаемость</Text>
-                        <Text style={styles.competencies}>Командность</Text>
-                    </View>
-
-                    <View style={{top: -30, left: -30}}>
-                        <View style={[styles.graph, {transform: [{ rotate: "90deg" }]
-                        }]}>
-                            <VictoryChart domainPadding={9} height={250} width={275}>
-                                <VictoryStack
-                                    colorScale={["gold"]}
-                                    style={{
-                                        data: { width: 20 },
-                                        labels: { padding: -20 }
-                                    }}
-                                    labelComponent={
-                                        <VictoryPortal>
-                                            <VictoryLabel/>
-                                        </VictoryPortal>
-                                    }
-                                >
-                                    <VictoryBar
-                                        data={[
-                                            {x: 1, y: -1, label: "-1"},
-                                            {x: 2, y: 1, label: "1"},
-                                            {x: 3, y: 2, label: "2"},
-                                            {x: 4, y: 1.5, label: "1.5"}
+                                            {x: 1, y: grades.rating.self.competence1, label: grades.rating.self.competence1},
+                                            {x: 2, y: grades.rating.self.competence2, label: grades.rating.self.competence2},
+                                            {x: 3, y: grades.rating.self.competence3, label: grades.rating.self.competence3},
+                                            {x: 4, y: grades.rating.self.competence4, label: grades.rating.self.competence4}
                                         ]}
                                     />
                                 </VictoryStack>
@@ -189,7 +164,7 @@ const InterpreterScreen = () => (
                                 <VictoryStack
                                     colorScale={["gold"]}
                                     style={{
-                                        data: { width: 20 },
+                                        data: { width: 25 },
                                         labels: { padding: -20 }
                                     }}
                                     labelComponent={
@@ -200,10 +175,10 @@ const InterpreterScreen = () => (
                                 >
                                     <VictoryBar
                                         data={[
-                                            {x: 1, y: -1, label: "-1"},
-                                            {x: 2, y: 1, label: "1"},
-                                            {x: 3, y: 2, label: "2"},
-                                            {x: 4, y: 1.5, label: "1.5"}
+                                            {x: 1, y: grades.rating.team.competence1, label: grades.rating.team.competence1},
+                                            {x: 2, y: grades.rating.team.competence2, label: grades.rating.team.competence2},
+                                            {x: 3, y: grades.rating.team.competence3, label: grades.rating.team.competence3},
+                                            {x: 4, y: grades.rating.team.competence4, label: grades.rating.team.competence4}
                                         ]}
                                     />
                                 </VictoryStack>
@@ -239,7 +214,7 @@ const InterpreterScreen = () => (
                                 <VictoryStack
                                     colorScale={["gold"]}
                                     style={{
-                                        data: { width: 20 },
+                                        data: { width: 25 },
                                         labels: { padding: -20 }
                                     }}
                                     labelComponent={
@@ -250,10 +225,10 @@ const InterpreterScreen = () => (
                                 >
                                     <VictoryBar
                                         data={[
-                                            {x: 1, y: -1, label: "-1"},
-                                            {x: 2, y: 1, label: "1"},
-                                            {x: 3, y: 2, label: "2"},
-                                            {x: 4, y: 1.5, label: "1.5"}
+                                            {x: 1, y: grades.rating.expert.competence1, label: grades.rating.expert.competence1},
+                                            {x: 2, y: grades.rating.expert.competence2, label: grades.rating.expert.competence2},
+                                            {x: 3, y: grades.rating.expert.competence3, label: grades.rating.expert.competence3},
+                                            {x: 4, y: grades.rating.expert.competence4, label: grades.rating.expert.competence4}
                                         ]}
                                     />
                                 </VictoryStack>
@@ -273,8 +248,9 @@ const InterpreterScreen = () => (
                 </View>
             </View>
         </ScrollView>
+            </> : <ActivityIndicator animating={true} size="large" color="#ffcc00" /> }
     </View>
-)
+)}
 
 const styles = StyleSheet.create({
     graph:{
