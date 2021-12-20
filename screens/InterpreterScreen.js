@@ -1,5 +1,15 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, Image, SafeAreaView, ScrollView, Dimensions, ActivityIndicator} from 'react-native';
+import {
+    StyleSheet,
+    View,
+    Text,
+    Image,
+    SafeAreaView,
+    ScrollView,
+    Dimensions,
+    ActivityIndicator,
+
+} from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
 import {responsiveFontSize } from "react-native-responsive-dimensions";
 import {
@@ -11,11 +21,8 @@ import {
     VictoryLabel,
     VictoryAxis,
 } from "victory-native";
-import { YellowBox } from 'react-native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-
-YellowBox.ignoreWarnings(['VirtualizedLists should never be nested']);
 
 const InterpreterScreen = () => {
 const media = 'http://studprzi.beget.tech/'
@@ -67,9 +74,9 @@ return (
                                         labels: { padding: -20 }
                                     }}
                                     labelComponent={
-                                        <VictoryPortal>
+
                                             <VictoryLabel/>
-                                        </VictoryPortal>
+
                                     }
                                 >
                                     <VictoryBar
@@ -118,9 +125,9 @@ return (
                                         labels: { padding: -20 }
                                     }}
                                     labelComponent={
-                                        <VictoryPortal>
+
                                             <VictoryLabel/>
-                                        </VictoryPortal>
+
                                     }
                                 >
                                     <VictoryBar
@@ -168,9 +175,9 @@ return (
                                         labels: { padding: -20 }
                                     }}
                                     labelComponent={
-                                        <VictoryPortal>
+
                                             <VictoryLabel/>
-                                        </VictoryPortal>
+
                                     }
                                 >
                                     <VictoryBar
@@ -218,9 +225,9 @@ return (
                                         labels: { padding: -20 }
                                     }}
                                     labelComponent={
-                                        <VictoryPortal>
+
                                             <VictoryLabel/>
-                                        </VictoryPortal>
+
                                     }
                                 >
                                     <VictoryBar

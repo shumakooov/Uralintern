@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     },
 
     info:{
+        maxHeight: '29%',
         height: '27%',
         backgroundColor: '#3f3f3f',
         margin: '3%',

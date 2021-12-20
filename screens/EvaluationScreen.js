@@ -8,7 +8,7 @@ import {
     Button,
     TouchableNativeFeedback,
     ScrollView,
-    ActivityIndicator, Alert
+    ActivityIndicator, Alert, Platform, StatusBar, processColor
 } from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
 import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
@@ -17,6 +17,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import EvaluationInfo from '../components/forEvaluationScreen/InfoEvaluation';
 import DropDownPicker from 'react-native-dropdown-picker';
+import {Picker} from '@react-native-picker/picker';
 
 
 const EvaluationScreen = () => {
@@ -79,6 +80,8 @@ const EvaluationScreen = () => {
             getStage()
         },
         []);
+
+    const [gavno, setGavno] = useState()
 
     const saveGrades = async () => {
         try{
@@ -143,22 +146,53 @@ const EvaluationScreen = () => {
                         <SafeAreaView style={SafeAreaViewAndroid.AndroidSafeArea}>
                             <Text style={styles.textTopic}>Оценка команды</Text>
                         </SafeAreaView>
+                        {Platform.OS === "android" ?
+                            <>
+                            <View style={styles.pickerWrapper}>
+                                <Picker
+                                    selectedValue={value}
+                                    onValueChange={(value) =>
+                                        setValue(value)
+                                    }
+                                    mode="dropdown"
+                                    style={styles.picker}
+                                    dropdownIconColor={'#ffcc00'}>
+                                    <Picker.Item label="Выбери этап" value={null} style={styles.pickerItemStyle} />
+                                    {stage.map(stage => <Picker.Item label={stage.label} value={stage.value} key={stage.value}
+                                                                     style={styles.pickerItemStyle}/>)}
+                                </Picker>
+                            </View>
+                            <View style={styles.pickerWrapper}>
+                                <Picker
+                                    selectedValue={value2}
+                                    onValueChange={(value) =>
+                                        setValue2(value)}
+                                    mode="dropdown"
+                                    dropdownIconColor={'#ffcc00'}
+                                    style={styles.picker}>
+                                    <Picker.Item label="Выбери участника" value={null} style={styles.pickerItemStyle} />
+                                    {nameTeam.map(member => <Picker.Item label={member.label} value={member.value} key={member.value}
+                                                                         style={styles.pickerItemStyle} />)}
+                                </Picker>
+                            </View>
+                            </>:
+                            <>
                         <View style={[styles.list, styles.dropbox1]}>
                             <DropDownPicker
                                 open={open}
                                 value={value}
                                 items={stage}
                                 setOpen={setOpen}
-                                zIndex={10}
                                 setValue={setValue}
                                 setItems={setItems}
                                 placeholder={"Выбери этап"}
                                 placeholderStyle={{color: '#ffcc00'}}
                                 style={styles.listText}
                                 textStyle={{color: '#ffcc00'}}
-                                dropDownContainerStyle={{backgroundColor: '#282828', borderColor: '#ffcc00', borderWidth: 2, zIndex: 2}}
+                                dropDownContainerStyle={{backgroundColor: '#282828', borderColor: '#ffcc00', borderWidth: 2, zIndex: 5, }}
                                 arrowIconStyle={{backgroundColor: '#ffcc00'}}
                                 tickIconStyle={{color: '#ffcc00'}}
+                                dropDownMinHeight={100}
                             />
                         </View>
                         <View style={[styles.list, styles.dropbox2]}>
@@ -173,10 +207,12 @@ const EvaluationScreen = () => {
                                 placeholderStyle={{color: '#ffcc00'}}
                                 style={styles.listText}
                                 textStyle={{color: '#ffcc00'}}
-                                dropDownContainerStyle={{backgroundColor: '#282828', borderColor: '#ffcc00', borderWidth: 2, zIndex: 2}}
+                                dropDownContainerStyle={{backgroundColor: '#282828', borderColor: '#ffcc00', borderWidth: 2, zIndex: 4}}
                                 arrowIconStyle={{backgroundColor: '#ffcc00'}}
                             />
                         </View>
+                        </>
+                        }
 
                         <View style={styles.competences}>
                             <Text style={styles.competencesTopic}>Компетенции</Text>
@@ -223,12 +259,33 @@ const EvaluationScreen = () => {
 }
 
 const styles = StyleSheet.create({
+    pickerItemStyle : {
+        color: '#ffcc00',
+        backgroundColor: '#282828'
+    },
+    pickerWrapper: {
+        width: '70%',
+        padding: '1%',
+        marginBottom: '5%',
+        paddingLeft: '3%',
+        marginHorizontal:'15%',
+        borderWidth: 2,
+        borderColor: '#ffcc00',
+        borderRadius: 10,
+        backgroundColor: '#282828',
+    },
+    picker: {
+        padding: '8%',
+        fontSize: responsiveFontSize(2),
+        color: '#ffcc00',
+    },
     dropbox1: {
-      zIndex: 2
+        zIndex:6,
+
     },
 
     dropbox2: {
-      zIndex: 1
+        zIndex: 5,
     },
 
     helpContainer:{
@@ -245,6 +302,7 @@ const styles = StyleSheet.create({
     },
 
     list:{
+        zIndex: 999,
         width: '70%',
         padding: '1%',
         marginBottom: '5%',

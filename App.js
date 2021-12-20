@@ -5,6 +5,7 @@ import {AuthContext} from "./components/forAuth/authContext";
 import {StyleSheet, View, Text} from 'react-native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+console.disableYellowBox = true;
 
     export default function App() {
         const [isAuth, setIsAuth] = useState(false)

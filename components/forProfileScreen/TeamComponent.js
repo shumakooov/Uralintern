@@ -59,11 +59,12 @@ const styles = StyleSheet.create({
     },
 
     teamStyle:{
-        flex: 0.7,
+        minHeight: responsiveHeight(1),
         margin: '3%',
         backgroundColor: '#3f3f3f',
         borderRadius: 40,
-        justifyContent: 'space-between',
+        marginBottom: 125,
+        paddingBottom: '3%'
     },
 
 });

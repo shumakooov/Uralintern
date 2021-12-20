@@ -4,7 +4,6 @@ import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-nativ
 import RadioButton from "./forEvaluationScreen/RadioButton";
 
 const RadioBlock = (props) => {
-    const[selectedBlock, setSelectedBlock] = React.useState();
     const[value, setValue] = React.useState();
 
     const setValueLog = (value) => {
