@@ -14,37 +14,34 @@ console.disableYellowBox = true;
 
         const checkAuth = async() => {
             try{
-                // const token = 'asdfasdfsadgasdasdgasdfasd'
                 const token = await AsyncStorage.getItem('token');
                 if (token != null){
                     await axios.get('http://studprzi.beget.tech/api/user',
                         {headers: {Authorization: 'Token ' + token}})
-                        .then(response => validateResponse(response))
+                        .then(response => {
+                            setUser(response)
+                            setIsAuth(true);
+                        }).catch(e => handleError(e))
                 }
             }catch(e){
                 Alert.alert("Ошибка", e.message, [
                     {text: "OK"}])            }
         }
 
-        const errorCatch = (error) => {
-
-        }
-
-        const validateResponse = (response) => {
-            if (response.data.user.detail){
-                console.log(response.data)
-                Alert.alert("Ошибка", response.data.user.detail, [
+        const handleError = (e) => {
+            console.log(e.response.status)
+            if (e.response.status < 500 && e.response.status > 400)
+                Alert.alert("Ошибка", "Страницы не существует", [
                     {text: "OK"}])
-            }
-            else{
-                setUser(response)
-                setIsAuth(true);
-            }
+            else if (e.response.status === 403 && e.response.data.user.detail)
+                Alert.alert("Ошибка", e.response.data.user.detail, [
+                    {text: "OK"}])
+            else
+                Alert.alert("Ошибка", e.message, [{text: "OK"}])
         }
 
         React.useEffect(() => {
                 checkAuth()
-                // user.data ? setIsAuth(true) : setIsAuth(false)
             },
             []);
 
