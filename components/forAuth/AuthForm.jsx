@@ -83,6 +83,18 @@ const AuthForm = () => {
 }
 
 const styles = StyleSheet.create({
+	default: {
+		borderStyle: 'solid',
+		borderColor: 'white',
+		borderBottomWidth: 2,
+		margin: '2%',
+		padding: '2%',
+		width: '70%',
+		color: '#ffcc00',
+		fontSize: responsiveFontSize(2.2),
+		marginLeft: '15%',
+	},
+
 	noImg: {
 		marginTop: '20%'
 	},
@@ -92,8 +104,9 @@ const styles = StyleSheet.create({
 		height: null,
 		marginLeft: '12%',
 		marginBottom: '13%',
-		marginTop: '13%',
+		marginTop:'13%',
 		resizeMode: "contain"
+
 	},
 
 	buttonText: {
@@ -112,18 +125,6 @@ const styles = StyleSheet.create({
 		height: '5%',
 		marginTop: '9%',
 		marginLeft: '27%'
-	},
-
-	default:{
-		borderStyle: 'solid',
-		borderColor: 'white',
-		borderBottomWidth: 2,
-		margin: '2%',
-		padding: '2%',
-		width: '70%',
-		color: '#ffcc00',
-		fontSize: responsiveFontSize(2.2),
-		marginLeft: '15%',
 	},
 
 	back:{

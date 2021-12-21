@@ -10,7 +10,6 @@ const RadioBlock = (props) => {
         setValue(value)
         props.setCompetence(value )
     }
-
     return (
         <View style={styles.container}>
             <RadioButton value={-1} blockValue={setValueLog} selectedValue={value}/>
@@ -56,5 +55,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#ffcc00',
     },
-
 });

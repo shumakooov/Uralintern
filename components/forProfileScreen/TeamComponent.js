@@ -13,9 +13,7 @@ const Team = props => {
                         <Text style={styles.textTeamFio}>{user.username.split(' ')[0] + ' ' + user.username.split(' ')[1]}</Text>
                         <Text style={styles.textTeamRole}>{user.internship}</Text>
                     </View>
-                </React.Fragment>
-            ))
-            }
+                </React.Fragment>))}
         </View>
     )
 }
@@ -63,7 +61,6 @@ const styles = StyleSheet.create({
         margin: '3%',
         backgroundColor: '#3f3f3f',
         borderRadius: 40,
-        marginBottom: 125,
         paddingBottom: '3%'
     },
 

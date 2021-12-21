@@ -70,8 +70,8 @@ const EvaluationScreen = () => {
             if (token != null){
                 const data = await axios.get('http://studprzi.beget.tech/api/stage',
                     {headers: {Authorization: 'Token ' + token}})
-                let allStage = data.data.stages.map(element =>
-                    new Object({label: element.stage_name, value: element.id}) )
+                let allStage = data.data.stages.map((element, index) =>
+                    new Object({label: element.stage_name, value: element.id} ) )
                 setStage(allStage)
             }
         }catch(e){
@@ -140,7 +140,6 @@ const EvaluationScreen = () => {
 
     return (
         <View style={styles.back}>
-
             <ScrollView>
                         <SafeAreaView style={SafeAreaViewAndroid.AndroidSafeArea}>
                             <Text style={styles.textTopic}>Оценка команды</Text>
@@ -153,8 +152,7 @@ const EvaluationScreen = () => {
                                 <Picker
                                     selectedValue={value}
                                     onValueChange={(value) =>
-                                        setValue(value)
-                                    }
+                                        setValue(value)}
                                     mode="dropdown"
                                     style={styles.picker}
                                     dropdownIconColor={'#ffcc00'}>
@@ -166,8 +164,7 @@ const EvaluationScreen = () => {
                             <View style={styles.pickerWrapper}>
                                 <Picker
                                     selectedValue={value2}
-                                    onValueChange={(value) =>
-                                        setValue2(value)}
+                                    onValueChange={(value) => setValue2(value)}
                                     mode="dropdown"
                                     dropdownIconColor={'#ffcc00'}
                                     style={styles.picker}>
@@ -193,8 +190,7 @@ const EvaluationScreen = () => {
                                 dropDownContainerStyle={{backgroundColor: '#282828', borderColor: '#ffcc00', borderWidth: 2, zIndex: 5, }}
                                 arrowIconStyle={{backgroundColor: '#ffcc00'}}
                                 tickIconStyle={{color: '#ffcc00'}}
-                                dropDownMinHeight={100}
-                            />
+                                dropDownMinHeight={100}/>
                         </View>
                         <View style={[styles.list, styles.dropbox2]}>
                             <DropDownPicker
@@ -209,15 +205,12 @@ const EvaluationScreen = () => {
                                 style={styles.listText}
                                 textStyle={{color: '#ffcc00'}}
                                 dropDownContainerStyle={{backgroundColor: '#282828', borderColor: '#ffcc00', borderWidth: 2, zIndex: 4}}
-                                arrowIconStyle={{backgroundColor: '#ffcc00'}}
-                            />
+                                arrowIconStyle={{backgroundColor: '#ffcc00'}}/>
                         </View>
                         </>
                         }
-
                         <View style={styles.competences}>
                             <Text style={styles.competencesTopic}>Компетенции</Text>
-
                             <View style={styles.helpContainer}>
                                 <Text style={styles.competencesItems}>Вовлеченность</Text>
                                 <RadioBlock setCompetence = {setCompetence1}/>
@@ -226,24 +219,20 @@ const EvaluationScreen = () => {
                                 <Text style={styles.competencesItems}>Организованность</Text>
                                 <RadioBlock  setCompetence = {setCompetence2}/>
                             </View>
-
                             <View style={styles.helpContainer}>
                                 <Text style={styles.competencesItems}>Обучаемость</Text>
                                 <RadioBlock  setCompetence = {setCompetence3}/>
                             </View>
-
                             <View style={styles.helpContainer}>
                                 <Text style={styles.competencesItems}>Командность</Text>
                                 <RadioBlock  setCompetence = {setCompetence4}/>
                             </View>
-
                             <View style={styles.buttonStyle}>
                                 <TouchableNativeFeedback>
                                     <Button
                                         title="Сохранить оценки"
                                         color='#ffcc00'
-                                        onPress={saveGrades}
-                                    />
+                                        onPress={saveGrades}/>
                                 </TouchableNativeFeedback>
                             </View>
                         </View>

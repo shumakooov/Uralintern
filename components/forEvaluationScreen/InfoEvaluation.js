@@ -5,12 +5,11 @@ import {responsiveFontSize} from "react-native-responsive-dimensions";
 const EvaluationInfo = props => {
     return (
         <View style = {styles.evaluationInfo}>
-            { props.info.descriptions.map(evaluation => (
-                <>
+            { props.info.descriptions.map((evaluation, index) => (
+                <View key = {index}>
                 <Text style = {styles.evaluationInfoNameText}>{evaluation.name}</Text>
                 <Text style = {styles.evaluationInfoText}> {evaluation.description}</Text>
-                </>
-            ))}
+                </View>))}
         </View>
     )
 }

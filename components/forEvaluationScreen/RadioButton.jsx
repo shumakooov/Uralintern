@@ -3,8 +3,6 @@ import {View, TouchableOpacity, Text, StyleSheet} from "react-native";
 import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
 
 const RadioButton = (props) => {
-    const[key, setKey] = React.useState();
-    const[id, setId] = React.useState();
     const[value, setValue] = React.useState();
     const[selected, setSelected] = React.useState(false);
 
@@ -15,8 +13,7 @@ const RadioButton = (props) => {
                 onPress={() => {
                     props.blockValue(props.value)
                     setValue(props.value)
-                    setSelected(!selected)
-                }}>
+                    setSelected(!selected)}}>
                 {props.selectedValue === value && selected && <View style={styles.selectedRb}/>}
             </TouchableOpacity>
             <Text style={styles.radioText}>{props.value}</Text>

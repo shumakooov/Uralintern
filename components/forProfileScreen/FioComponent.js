@@ -8,16 +8,12 @@ const FIO = props => {
         <View style={styles.info }>
             <Image source={props.trainee.image !== null ?  {uri: props.mediaImg + props.trainee.image} : require('../../images/zaglushka.png')} style={styles.imgStyle} />
             <View style={styles.fioStyle}>
-                { props.trainee.username.split(' ').map(user => (
-                <>
-                    <View style={styles.underline}>
+                { props.trainee.username.split(' ').map((user, index) => (
+                    <View style={styles.underline} key = {index}>
                         <Text style={styles.textFioStyle}>{user}</Text>
-                    </View>
-                </>
-            ))}
+                    </View>))}
             </View>
-        </View>
-    )
+        </View>)
 }
 
 const styles = StyleSheet.create({
@@ -27,7 +23,6 @@ const styles = StyleSheet.create({
         borderRadius: 60,
         marginLeft: '7%',
     },
-
     info:{
         maxHeight: '29%',
         height: '27%',
@@ -39,14 +34,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center'
     },
-
     underline: {
         borderStyle: "solid",
         borderColor: '#ffcc00',
         borderBottomWidth: 1.5,
         width: '135%',
     },
-
     textFioStyle:{
         color: 'white',
         fontSize: responsiveFontSize(2.6),
@@ -54,12 +47,10 @@ const styles = StyleSheet.create({
         textDecorationColor: '#ffcc00',
         textAlign: 'center'
     },
-
     fioStyle:{
         marginRight: '15%',
         alignItems: 'center',
     },
-
 })
 
 export default FIO;

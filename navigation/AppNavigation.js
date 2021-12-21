@@ -1,7 +1,6 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import React, {Component} from 'react';
 import { View, Image, StyleSheet, Text} from 'react-native'
-
 import EvaluationScreen from "../screens/EvaluationScreen";
 import InterpreterScreen from "../screens/InterpreterScreen";
 import ProfileScreen from "../screens/ProfileScreen";
@@ -13,10 +12,13 @@ const Tabs = () => {
     return(
         <Tab.Navigator
             screenOptions={{
-                headerShown: false
-            }}
-            tabBarOptions={{
-                showLabel: false
+                headerShown: false,
+                tabBarShowLabel:false,
+                tabBarStyle: [
+                    {display: "flex"},
+                    null
+                ],
+                tabBarOptions: [{showLabel: false}]
             }}
             initialRouteName="Profile"
         >
@@ -62,7 +64,6 @@ const Tabs = () => {
                                 width: responsiveWidth(11),
                                 height: responsiveHeight(11),
                                 marginBottom: '5%',
-
                             }}
                         />
                         <Text style={styles.footerText}>Отчет</Text>
@@ -81,6 +82,5 @@ const styles = StyleSheet.create({
 
     }
 })
-
 
 export default Tabs;
