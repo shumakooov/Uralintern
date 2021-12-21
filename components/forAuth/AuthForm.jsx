@@ -72,8 +72,6 @@ const AuthForm = () => {
 					<Button
 						onPress={authHandler}
 						title="Войти"
-						color='white'
-						backgroundColor='red'
 					/>
 				</TouchableNativeFeedback>
 			</View>
