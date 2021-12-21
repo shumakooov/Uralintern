@@ -6,8 +6,8 @@ const Team = props => {
     return (
         <View style={styles.teamStyle}>
             <Text style={styles.textTeam}>Команда {' "' + props.team[0].team_name + '"'}</Text>
-            {props.team.map(user => (
-                <React.Fragment>
+            {props.team.map((user, index) => (
+                <React.Fragment key={index}>
                     <View style={styles.team}>
                         <Image source={user.image !== null ?  {uri: props.mediaImg + user.image} : require('../../images/zaglushka.png')} style={styles.imgStyleTeam} />
                         <Text style={styles.textTeamFio}>{user.username.split(' ')[0] + ' ' + user.username.split(' ')[1]}</Text>

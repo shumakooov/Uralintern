@@ -3,16 +3,16 @@ import {
 	StyleSheet,
 	TouchableNativeFeedback,
 	View,
-	Button,
 	Image,
 	SafeAreaView,
 	TextInput,
 	Alert,
-	ActivityIndicator
+	ActivityIndicator, TouchableOpacity, Text
 } from 'react-native'
 import { useAuth } from './useAuth'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {responsiveFontSize} from "react-native-responsive-dimensions";
+import {Button} from "react-native-elements";
 
 const AuthForm = () => {
 	const [email, setEmail] = useState('')
@@ -71,14 +71,13 @@ const AuthForm = () => {
 				<TextInput style={styles.default} value={password} onChangeText={setPassword} placeholder='Password..'
 						   placeholderTextColor="#c2a947" secureTextEntry={true}/>
 			</View>
-			<View style={styles.buttonStyle}>
+
 				<TouchableNativeFeedback>
-					<Button
-						onPress={authHandler}
-						title="Войти"
-					/>
+					<TouchableOpacity style={styles.buttonStyle} onPress={() => {authHandler()}}>
+						<Text style={styles.buttonText}>Войти</Text>
+					</TouchableOpacity>
 				</TouchableNativeFeedback>
-			</View>
+
 		</SafeAreaView>
 	)
 }
@@ -89,18 +88,28 @@ const styles = StyleSheet.create({
 	},
 	logo:{
 		flex: 0.4,
-		width: '76%',
-		height: '76%',
+		width: null,
+		height: null,
 		marginLeft: '12%',
 		marginBottom: '13%',
-		marginTop: '13%'
+		marginTop: '13%',
+		resizeMode: "contain"
+	},
+
+	buttonText: {
+		color: 'white',
+		fontSize: responsiveFontSize(2.4),
 	},
 
 	buttonStyle:{
 		borderStyle: 'solid',
-		borderRadius: 10,
+		borderRadius: 6,
 		backgroundColor: '#ffcc00',
+		justifyContent: "center",
+		alignItems: "center",
 		width: '45%',
+		minHeight: 40,
+		height: '5%',
 		marginTop: '9%',
 		marginLeft: '27%'
 	},

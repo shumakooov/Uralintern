@@ -11,7 +11,7 @@ import {
 
 } from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
-import {responsiveFontSize } from "react-native-responsive-dimensions";
+import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
 import {
     VictoryChart,
     VictoryBar,
@@ -63,15 +63,15 @@ return (
                         <Text style={styles.competencies}>Командность</Text>
                     </View>
 
-                    <View style={{top: -30, left: -30}}>
+                    <View style={{top: "-8%", left: "-13%"}}>
                         <View style={[styles.graph, {transform: [{ rotate: "90deg" }]
                         }]}>
-                            <VictoryChart domainPadding={9} height={250} width={275}>
+                            <VictoryChart domainPadding={responsiveWidth(3)} height={responsiveHeight(29)} width={responsiveWidth(71)}>
                                 <VictoryStack
                                     colorScale={["gold"]}
                                     style={{
-                                        data: { width: 25 },
-                                        labels: { padding: -20 }
+                                        data: { width: responsiveWidth(6.5) },
+                                        labels: { padding: responsiveHeight(-2.5) }
                                     }}
                                     labelComponent={
 
@@ -114,15 +114,15 @@ return (
                         <Text style={styles.competencies}>Командность</Text>
                     </View>
 
-                    <View style={{top: -30, left: -30}}>
+                    <View style={{top: "-8%", left: "-13%"}}>
                         <View style={[styles.graph, {transform: [{ rotate: "90deg" }]
                         }]}>
-                            <VictoryChart domainPadding={9} height={250} width={275}>
+                            <VictoryChart domainPadding={responsiveWidth(3)} height={responsiveHeight(29)} width={responsiveWidth(71)}>
                                 <VictoryStack
                                     colorScale={["gold"]}
                                     style={{
-                                        data: { width: 25 },
-                                        labels: { padding: -20 }
+                                        data: { width: responsiveWidth(6.5) },
+                                        labels: { padding: responsiveHeight(-2.5) }
                                     }}
                                     labelComponent={
 
@@ -164,15 +164,15 @@ return (
                         <Text style={styles.competencies}>Командность</Text>
                     </View>
 
-                    <View style={{top: -30, left: -30}}>
+                    <View style={{top: "-8%", left: "-13%"}}>
                         <View style={[styles.graph, {transform: [{ rotate: "90deg" }]
                         }]}>
-                            <VictoryChart domainPadding={9} height={250} width={275}>
+                            <VictoryChart domainPadding={responsiveWidth(3)} height={responsiveHeight(29)} width={responsiveWidth(71)}>
                                 <VictoryStack
                                     colorScale={["gold"]}
                                     style={{
-                                        data: { width: 25 },
-                                        labels: { padding: -20 }
+                                        data: { width: responsiveWidth(6.5) },
+                                        labels: { padding: responsiveHeight(-2.5) },
                                     }}
                                     labelComponent={
 
@@ -214,15 +214,15 @@ return (
                         <Text style={styles.competencies}>Командность</Text>
                     </View>
 
-                    <View style={{top: -30, left: -30}}>
+                    <View style={{top: "-8%", left: "-13%"}}>
                         <View style={[styles.graph, {transform: [{ rotate: "90deg" }]
                         }]}>
-                            <VictoryChart domainPadding={9} height={250} width={275}>
+                            <VictoryChart domainPadding={responsiveWidth(3)} height={responsiveHeight(29)} width={responsiveWidth(71)}>
                                 <VictoryStack
                                     colorScale={["gold"]}
                                     style={{
-                                        data: { width: 25 },
-                                        labels: { padding: -20 }
+                                        data: { width: responsiveWidth(6.5) },
+                                        labels: { padding: responsiveHeight(-2.5) }
                                     }}
                                     labelComponent={
 

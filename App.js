@@ -10,29 +10,48 @@ console.disableYellowBox = true;
     export default function App() {
         const [isAuth, setIsAuth] = useState(false)
         const [user, setUser] = useState({})
+        const [login, setLogin] = useState(false)
 
         const checkAuth = async() => {
             try{
+                // const token = 'asdfasdfsadgasdasdgasdfasd'
                 const token = await AsyncStorage.getItem('token');
                 if (token != null){
-                    const data = await axios.get('http://studprzi.beget.tech/api/user',
+                    await axios.get('http://studprzi.beget.tech/api/user',
                         {headers: {Authorization: 'Token ' + token}})
-                    setUser(data)
+                        .then(response => validateResponse(response))
                 }
             }catch(e){
                 Alert.alert("Ошибка", e.message, [
                     {text: "OK"}])            }
         }
+
+        const errorCatch = (error) => {
+
+        }
+
+        const validateResponse = (response) => {
+            if (response.data.user.detail){
+                console.log(response.data)
+                Alert.alert("Ошибка", response.data.user.detail, [
+                    {text: "OK"}])
+            }
+            else{
+                setUser(response)
+                setIsAuth(true);
+            }
+        }
+
         React.useEffect(() => {
                 checkAuth()
-                user.data ? setIsAuth(true) : setIsAuth(false)
+                // user.data ? setIsAuth(true) : setIsAuth(false)
             },
             []);
-        console.log(isAuth)
+
         return (
             <AuthContext.Provider value={{ isAuth, setIsAuth }}>
                 <View style={styles.container}>
-                    {!isAuth ? <AuthForm /> : <Main />}
+                    {!isAuth? <AuthForm /> : <Main />}
                 </View>
             </AuthContext.Provider>
         )
