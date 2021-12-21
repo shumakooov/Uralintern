@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import AuthForm from "./components/forAuth/AuthForm";
 import Main from "./components/Main";
 import {AuthContext} from "./components/forAuth/authContext";
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, Alert} from 'react-native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 console.disableYellowBox = true;
@@ -20,8 +20,8 @@ console.disableYellowBox = true;
                     setUser(data)
                 }
             }catch(e){
-                console.log(e.message);
-            }
+                Alert.alert("Ошибка", e.message, [
+                    {text: "OK"}])            }
         }
         React.useEffect(() => {
                 checkAuth()

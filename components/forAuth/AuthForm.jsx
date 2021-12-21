@@ -20,21 +20,25 @@ const AuthForm = () => {
 	const { isAuth, setIsAuth } = useAuth()
 
 	async function req() {
-		let url = 'http://studprzi.beget.tech/api/user/login';
-		let res = await fetch(url, {
-			method: 'POST',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				user: {
-					email: email,
-					password: password
-				}
-			})
-		});
-		return await res.json()
+		try {
+			let url = 'http://studprzi.beget.tech/api/user/login';
+			let res = await fetch(url, {
+				method: 'POST',
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					user: {
+						email: email,
+						password: password
+					}
+				})
+			});
+			return await res.json()
+		}catch(e){
+			Alert.alert("Ошибка", e.message, [
+				{text: "OK"}])    }
 	}
 
 	const authHandler = async () => {

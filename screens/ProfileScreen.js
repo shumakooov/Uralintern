@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, Image, SafeAreaView, ScrollView, ActivityIndicator} from 'react-native';
+import {StyleSheet, View, Text, Image, SafeAreaView, ScrollView, ActivityIndicator, Alert} from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
 import {responsiveFontSize} from "react-native-responsive-dimensions";
 
@@ -22,8 +22,8 @@ const ProfileScreen = () => {
       }
 
     }catch(e){
-      console.log(e.message);
-    }
+      Alert.alert("Ошибка", e.message, [
+        {text: "OK"}])    }
   }
 
   React.useEffect(() => {

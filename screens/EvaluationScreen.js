@@ -8,7 +8,7 @@ import {
     Button,
     TouchableNativeFeedback,
     ScrollView,
-    ActivityIndicator, Alert, Platform, StatusBar, processColor
+    ActivityIndicator, Alert, Platform,
 } from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
 import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
@@ -30,7 +30,8 @@ const EvaluationScreen = () => {
                 setInfoEvaluating(data.data)
             }
         }catch(e){
-            console.log(e.message);
+            Alert.alert("Ошибка", e.message, [
+                {text: "OK"}])
         }
     }
     React.useEffect(() => {
@@ -52,7 +53,8 @@ const EvaluationScreen = () => {
                 setNameTeam(allTeam)
             }
         }catch(e){
-            console.log(e.message);
+            Alert.alert("Ошибка", e.message, [
+                {text: "OK"}])
         }
     }
     React.useEffect(() => {
@@ -73,15 +75,14 @@ const EvaluationScreen = () => {
                 setStage(allStage)
             }
         }catch(e){
-            console.log(e.message);
+            Alert.alert("Ошибка", e.message, [
+                {text: "OK"}])
         }
     }
     React.useEffect(() => {
             getStage()
         },
         []);
-
-    const [gavno, setGavno] = useState()
 
     const saveGrades = async () => {
         try{
@@ -102,7 +103,6 @@ const EvaluationScreen = () => {
             if (token != null && value != null && value2 != null){
                 allGrades.grade.stage =  value
                 allGrades.grade.trainee =  value2
-                console.log(allGrades)
                 let data = await fetch('http://studprzi.beget.tech/api/grade/create-update', {
                     method: 'POST',
                     headers: {
@@ -140,12 +140,13 @@ const EvaluationScreen = () => {
 
     return (
         <View style={styles.back}>
-            { nameTeam[0] && stage[0] && infoEvaluating.descriptions?
-                <>
-                    <ScrollView>
+
+            <ScrollView>
                         <SafeAreaView style={SafeAreaViewAndroid.AndroidSafeArea}>
                             <Text style={styles.textTopic}>Оценка команды</Text>
                         </SafeAreaView>
+                { nameTeam[0] && stage[0] && infoEvaluating.descriptions?
+                    <>
                         {Platform.OS === "android" ?
                             <>
                             <View style={styles.pickerWrapper}>
@@ -251,14 +252,19 @@ const EvaluationScreen = () => {
                             <Text style={styles.infoText}>Информация по оценкам</Text>
                         </View>
                         <EvaluationInfo info = {infoEvaluating}/>
-                    </ScrollView>
-                </> : <ActivityIndicator animating={true} size="large" color="#ffcc00" />
+                    </> : <View style={styles.noInfo}>
+                        <ActivityIndicator animating={true} size="large" color="#ffcc00" />
+                    </View>
             }
+            </ScrollView>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    noInfo: {
+        marginTop: '20%'
+    },
     pickerItemStyle : {
         color: '#ffcc00',
         backgroundColor: '#282828'

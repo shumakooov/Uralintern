@@ -47,12 +47,12 @@ React.useEffect(() => {
     []);
 return (
     <View style={styles.back}>
-        {grades.rating ?
-            <>
         <ScrollView>
             <SafeAreaView style={SafeAreaViewAndroid.AndroidSafeArea}>
                 <Text style={styles.textTopic}>Персональный отчёт</Text>
             </SafeAreaView>
+            {grades.rating ?
+                <>
             <View style={styles.evaluation}>
                 <Text style={styles.EvaluationText}>Общая оценка</Text>
                 <View style={{flexDirection: 'row'}}>
@@ -254,12 +254,17 @@ return (
                     </View>
                 </View>
             </View>
+                </> : <View style={styles.noInfo}>
+                    <ActivityIndicator animating={true} size="large" color="#ffcc00" />
+                </View>}
         </ScrollView>
-            </> : <ActivityIndicator animating={true} size="large" color="#ffcc00" /> }
     </View>
 )}
 
 const styles = StyleSheet.create({
+    noInfo: {
+        marginTop: '20%'
+    },
     graph:{
 
     },
