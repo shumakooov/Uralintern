@@ -17,6 +17,7 @@ import Team from "../components/forProfileScreen/TeamComponent";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import {useAuth} from "../components/forAuth/useAuth";
+
 const ProfileScreen = ({navigation}) => {
   const media = 'http://studprzi.beget.tech/'
   const[dataset, setDataset] = React.useState({});
@@ -84,7 +85,7 @@ const styles = StyleSheet.create({
     marginTop: '2%',
     width: '60%',
     borderColor: '#ffcc00',
-    marginBottom:'3%',
+    marginBottom:130,
     marginHorizontal: '20%'
   },
   noInfo: {
