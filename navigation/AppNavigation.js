@@ -4,6 +4,8 @@ import { View, Image, StyleSheet, Text} from 'react-native'
 import EvaluationScreen from "../screens/EvaluationScreen";
 import InterpreterScreen from "../screens/InterpreterScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import 'react-native-gesture-handler'
+
 import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
 
 const Tab = createBottomTabNavigator();

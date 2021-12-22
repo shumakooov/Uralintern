@@ -14,10 +14,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import {responsiveFontSize} from "react-native-responsive-dimensions";
 import {Button} from "react-native-elements";
 
-const AuthForm = () => {
+const AuthForm = ({navigation}) => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const { isAuth, setIsAuth } = useAuth()
+
+	React.useEffect(() => {
+		if (isAuth)
+			navigation.replace('Main')
+	})
 
 	async function req() {
 		try {
@@ -44,8 +49,9 @@ const AuthForm = () => {
 	const authHandler = async () => {
 		let a = await req();
 		try {
-			await AsyncStorage.setItem('token', a.user.token)
-			setIsAuth(true)
+			await AsyncStorage.setItem('token', a.user.token).then(() => {
+				setIsAuth(true)
+				navigation.replace('Main')})
 		} catch (e) {
 			Alert.alert("Ошибка", "Введены неверные данные", [
 				{text: "OK"},
@@ -100,12 +106,11 @@ const styles = StyleSheet.create({
 	},
 	logo:{
 		flex: 0.4,
-		width: null,
-		height: null,
+		width: '76%',
+		height: '76%',
 		marginLeft: '12%',
 		marginBottom: '13%',
 		marginTop:'13%',
-		resizeMode: "contain"
 
 	},
 

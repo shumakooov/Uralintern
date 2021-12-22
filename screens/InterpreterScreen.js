@@ -66,7 +66,7 @@ return (
                     <View style={{top: "-8%", left: "-13%"}}>
                         <View style={[styles.graph, {transform: [{ rotate: "90deg" }]
                         }]}>
-                            <VictoryChart domainPadding={responsiveWidth(3)} height={responsiveHeight(29)} width={responsiveWidth(71)}>
+                            <VictoryChart domainPadding={responsiveWidth(3)} height={responsiveHeight(29)} width={responsiveWidth(72)}>
                                 <VictoryStack
                                     colorScale={["gold"]}
                                     style={{
@@ -117,7 +117,7 @@ return (
                     <View style={{top: "-8%", left: "-13%"}}>
                         <View style={[styles.graph, {transform: [{ rotate: "90deg" }]
                         }]}>
-                            <VictoryChart domainPadding={responsiveWidth(3)} height={responsiveHeight(29)} width={responsiveWidth(71)}>
+                            <VictoryChart domainPadding={responsiveWidth(3)} height={responsiveHeight(29)} width={responsiveWidth(72)}>
                                 <VictoryStack
                                     colorScale={["gold"]}
                                     style={{
@@ -167,7 +167,7 @@ return (
                     <View style={{top: "-8%", left: "-13%"}}>
                         <View style={[styles.graph, {transform: [{ rotate: "90deg" }]
                         }]}>
-                            <VictoryChart domainPadding={responsiveWidth(3)} height={responsiveHeight(29)} width={responsiveWidth(71)}>
+                            <VictoryChart domainPadding={responsiveWidth(3)} height={responsiveHeight(29)} width={responsiveWidth(72)}>
                                 <VictoryStack
                                     colorScale={["gold"]}
                                     style={{
@@ -217,7 +217,7 @@ return (
                     <View style={{top: "-8%", left: "-13%"}}>
                         <View style={[styles.graph, {transform: [{ rotate: "90deg" }]
                         }]}>
-                            <VictoryChart domainPadding={responsiveWidth(3)} height={responsiveHeight(29)} width={responsiveWidth(71)}>
+                            <VictoryChart domainPadding={responsiveWidth(3)} height={responsiveHeight(29)} width={responsiveWidth(72)}>
                                 <VictoryStack
                                     colorScale={["gold"]}
                                     style={{

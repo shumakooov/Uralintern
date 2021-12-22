@@ -16,9 +16,11 @@ import FIO from "../components/forProfileScreen/FioComponent";
 import Team from "../components/forProfileScreen/TeamComponent";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-const ProfileScreen = () => {
+import {useAuth} from "../components/forAuth/useAuth";
+const ProfileScreen = ({navigation}) => {
   const media = 'http://studprzi.beget.tech/'
   const[dataset, setDataset] = React.useState({});
+  const { isAuth, setIsAuth } = useAuth()
 
   const getData = async() => {
     try{
@@ -38,11 +40,10 @@ const ProfileScreen = () => {
       []);
 
   async function Exit () {
-    const token = await AsyncStorage.getItem('token');
-    console.log(token);
-    await AsyncStorage.removeItem('token')
-    const token1 = await AsyncStorage.getItem('token')
-    console.log(token1)
+    await AsyncStorage.removeItem('token').then(() => {
+      setIsAuth(false)
+      navigation.replace('Auth')
+    });
   }
 
   return (
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
     marginTop: '2%',
     width: '60%',
     borderColor: '#ffcc00',
-    marginBottom:125,
+    marginBottom:'3%',
     marginHorizontal: '20%'
   },
   noInfo: {
