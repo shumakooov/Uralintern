@@ -10,7 +10,6 @@ console.disableYellowBox = true;
 export default function App() {
     const [isAuth, setIsAuth] = useState(false)
     const [user, setUser] = useState({})
-    const [login, setLogin] = useState(false)
 
     const checkAuth = async() => {
         try{
@@ -32,12 +31,12 @@ export default function App() {
         console.log(e.response.status)
         if (e.response.status < 500 && e.response.status > 400)
             Alert.alert("Ошибка", "Страницы не существует", [
-                {text: "OK"}])
+                {text: "Выйти",  onPress: () => {AsyncStorage.removeItem('token')}}])
         else if (e.response.status === 403 && e.response.data.user.detail)
             Alert.alert("Ошибка", e.response.data.user.detail, [
-                {text: "OK"}])
+                {text: "Выйти",  onPress: () => AsyncStorage.removeItem('token')}])
         else
-            Alert.alert("Ошибка", e.message, [{text: "OK"}])
+            Alert.alert("Ошибка", e.message,[{text: "Выйти",  onPress: () => {AsyncStorage.removeItem('token')}}])
     }
 
     React.useEffect(() => {

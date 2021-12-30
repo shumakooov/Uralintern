@@ -17,6 +17,7 @@ import Team from "../components/forProfileScreen/TeamComponent";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import {useAuth} from "../components/forAuth/useAuth";
+import RNExitApp from "react-native-exit-app";
 
 const ProfileScreen = ({navigation}) => {
   const media = 'http://studprzi.beget.tech/'
@@ -32,7 +33,7 @@ const ProfileScreen = ({navigation}) => {
       }
     }catch(e){
       Alert.alert("Ошибка", e.message, [
-        {text: "OK"}])    }
+        {text: "Выйти",  onPress: () => {AsyncStorage.removeItem('token')}}])}
   }
 
   React.useEffect(() => {

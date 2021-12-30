@@ -68,7 +68,9 @@ const EvaluationScreen = () => {
         try{
             const token = await AsyncStorage.getItem('token');
             if (token != null){
-                const data = await axios.get('http://studprzi.beget.tech/api/stage',
+                const data1 = await axios.get('http://studprzi.beget.tech/api/trainee/team',
+                    {headers: {Authorization: 'Token ' + token}})
+                const data = await axios.get('http://studprzi.beget.tech/api/stages/' + data1.data.trainee.event,
                     {headers: {Authorization: 'Token ' + token}})
                 let allStage = data.data.stages.map((element, index) =>
                     new Object({label: element.stage_name, value: element.id} ) )
@@ -123,7 +125,6 @@ const EvaluationScreen = () => {
                 {text: "OK"}])
         }
     }
-
 
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
