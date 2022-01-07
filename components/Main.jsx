@@ -2,9 +2,7 @@ import React, {useState} from 'react';
 import {NavigationContainer} from "@react-navigation/native";
 import Tabs from "../navigation/AppNavigation";
 import {createStackNavigator} from "@react-navigation/stack";
-import ProfileScreen from "../screens/ProfileScreen";
 import AuthForm from "./forAuth/AuthForm";
-import {useAuth} from "./forAuth/useAuth";
 import 'react-native-gesture-handler'
 
 const Stack = createStackNavigator();

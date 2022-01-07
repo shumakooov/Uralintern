@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, {useState } from 'react'
 import {
 	StyleSheet,
 	TouchableNativeFeedback,
@@ -12,7 +12,6 @@ import {
 import { useAuth } from './useAuth'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {responsiveFontSize} from "react-native-responsive-dimensions";
-import {Button} from "react-native-elements";
 
 const AuthForm = ({navigation}) => {
 	const [email, setEmail] = useState('')

@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import SafeAreaViewAndroid from "../components/SafeAreaViewAndroid";
 import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
-import RadioBlock from '../components/RadioBlock';
+import RadioBlock from '../components/forEvaluationScreen/RadioBlock';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import EvaluationInfo from '../components/forEvaluationScreen/InfoEvaluation';

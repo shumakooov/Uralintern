@@ -1,5 +1,5 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
-import React, {Component} from 'react';
+import React from 'react';
 import { View, Image, StyleSheet, Text} from 'react-native'
 import EvaluationScreen from "../screens/EvaluationScreen";
 import InterpreterScreen from "../screens/InterpreterScreen";

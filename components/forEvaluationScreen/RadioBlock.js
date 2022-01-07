@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
 import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
-import RadioButton from "./forEvaluationScreen/RadioButton";
+import RadioButton from "./RadioButton";
 
 const RadioBlock = (props) => {
     const[value, setValue] = React.useState();

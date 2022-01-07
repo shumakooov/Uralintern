@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import AuthForm from "./components/forAuth/AuthForm";
 import Main from "./components/Main";
 import {AuthContext} from "./components/forAuth/authContext";
 import {StyleSheet, View, Text, Alert} from 'react-native';
