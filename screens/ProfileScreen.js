@@ -1,3 +1,4 @@
+// Экран профиля
 import React from 'react';
 import {
   StyleSheet,
@@ -19,10 +20,11 @@ import axios from "axios";
 import {useAuth} from "../components/forAuth/useAuth";
 
 const ProfileScreen = ({navigation}) => {
-  const media = 'http://studprzi.beget.tech/'
-  const[dataset, setDataset] = React.useState({});
-  const { isAuth, setIsAuth } = useAuth()
+  const media = 'http://studprzi.beget.tech/' // Ссылка на API
+  const[dataset, setDataset] = React.useState({}); // Переменные состояния для информации о стажере и его команде
+  const { isAuth, setIsAuth } = useAuth() // Проверяет авторизован ли пользователь
 
+      // Функция для получения информации о стажере и его команде
   const getData = async() => {
     try{
       const token = await AsyncStorage.getItem('token');
@@ -40,10 +42,11 @@ const ProfileScreen = ({navigation}) => {
       },
       []);
 
+  // Функция для выхода из аккаунта, удаляет токен
   async function Exit () {
     await AsyncStorage.removeItem('token').then(() => {
       setIsAuth(false)
-      navigation.replace('Auth')
+      navigation.replace('Auth') // Перекидывает на экран авторизации
     });
   }
 
@@ -53,7 +56,7 @@ const ProfileScreen = ({navigation}) => {
           <SafeAreaView style={SafeAreaViewAndroid.AndroidSafeArea}>
             <Text style={styles.textTopic}>Профиль</Text>
           </SafeAreaView>
-          { dataset.trainee && dataset.team ?
+          { dataset.trainee && dataset.team ? // Проверяет пришли ли данные с сервера
               <>
             <FIO trainee = {dataset.trainee} mediaImg = {media}/>
             <Team team = {dataset.team} mediaImg = {media}/>
@@ -69,7 +72,7 @@ const ProfileScreen = ({navigation}) => {
                 </View>
               </> :
               <View style={styles.noInfo}>
-                <ActivityIndicator animating={true} size="large" color="#ffcc00" />
+                <ActivityIndicator animating={true} size="large" color="#ffcc00" /> // Индикатор загрузки, пока дынные не пришли с сервера
               </View>
           }
         </ScrollView>

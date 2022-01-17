@@ -1,3 +1,4 @@
+// Компонент, который возвращает фамилию, имя и изображение стажера с сервера, принимает пропсы из profileScreen
 import React from 'react';
 import {Image, StyleSheet, Text, View} from "react-native";
 import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
     imgStyle:{
         width: responsiveWidth(28),
         height: responsiveHeight(13),
-        borderRadius: 60,
+        borderRadius: 6000,
         marginLeft: '7%',
     },
     info:{

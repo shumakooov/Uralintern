@@ -1,3 +1,4 @@
+// Навигация между формой авторизации и Tabs(см. AppNavigation), где первым экраном выводится Profile
 import React, {useState} from 'react';
 import {NavigationContainer} from "@react-navigation/native";
 import Tabs from "../navigation/AppNavigation";

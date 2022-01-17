@@ -1,3 +1,4 @@
+// Компонент самой радиокнопки
 import React from "react";
 import {View, TouchableOpacity, Text, StyleSheet} from "react-native";
 import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
@@ -14,7 +15,7 @@ const RadioButton = (props) => {
                     props.blockValue(props.value)
                     setValue(props.value)
                     setSelected(!selected)}}>
-                {props.selectedValue === value && selected && <View style={styles.selectedRb}/>}
+                {props.value === value && props.selectedValue === value && <View style={styles.selectedRb}/>}
             </TouchableOpacity>
             <Text style={styles.radioText}>{props.value}</Text>
         </View>
@@ -37,8 +38,8 @@ const styles = StyleSheet.create({
         top: 5
     },
     radioCircle: {
-        height: responsiveHeight(4.5),
-        width: responsiveWidth(9.5),
+        height: 39,
+        width: 39,
         borderRadius: 100,
         borderWidth: 1,
         borderColor: '#ffcc00',

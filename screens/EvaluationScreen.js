@@ -1,3 +1,4 @@
+// Экран оценки
 import React, {useState} from 'react';
 import {
     StyleSheet,
@@ -18,10 +19,12 @@ import axios from "axios";
 import EvaluationInfo from '../components/forEvaluationScreen/InfoEvaluation';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {Picker} from '@react-native-picker/picker';
+import RadioButton from "../components/forEvaluationScreen/RadioButton";
 
 
 const EvaluationScreen = () => {
     const[infoEvaluating, setInfoEvaluating] = React.useState({});
+    // Функция, которая получает информацию об оценках с сервера
     const getInfoEvaluating = async() => {
         try{
             const token = await AsyncStorage.getItem('token');
@@ -41,6 +44,8 @@ const EvaluationScreen = () => {
 
 
     const[nameTeam, setNameTeam] = React.useState({});
+    // Функция, которая получает информацию о команде и формирует массив объектов выпадающего
+    // списка для выбора того, кого будешь оценивать
     const getNameTeam = async() => {
         try{
             const token = await AsyncStorage.getItem('token');
@@ -64,6 +69,7 @@ const EvaluationScreen = () => {
 
 
     const[stage, setStage] = React.useState({});
+    // Функция, которая получает информацию об этапах и формирует массив этапов для выпадающего списка (выбери этап)
     const getStage = async() => {
         try{
             const token = await AsyncStorage.getItem('token');
@@ -86,6 +92,7 @@ const EvaluationScreen = () => {
         },
         []);
 
+    // Функция, которая проверяет все ли выбрано и отправляет оценки на сервер
     const saveGrades = async () => {
         try{
             const allGrades = {grade:{}}
@@ -126,6 +133,7 @@ const EvaluationScreen = () => {
         }
     }
 
+    // Переменные состояния для двух Dropdownpicker
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
     const [items, setItems] = useState([]);
@@ -134,6 +142,7 @@ const EvaluationScreen = () => {
     const [value2, setValue2] = useState(null);
     const [items2, setItems2] =  useState([]);
 
+    // Переменные состояния для сохранения оценок
     const[competence1, setCompetence1] = useState();
     const[competence2, setCompetence2] = useState();
     const[competence3, setCompetence3] = useState();
@@ -148,6 +157,9 @@ const EvaluationScreen = () => {
                 { nameTeam[0] && stage[0] && infoEvaluating.descriptions?
                     <>
                         {Platform.OS === "android" ?
+
+                            // Выпадающий список для андроида
+
                             <>
                             <View style={styles.pickerWrapper}>
                                 <Picker
@@ -176,6 +188,9 @@ const EvaluationScreen = () => {
                             </View>
                             </>:
                             <>
+
+                                // Выпадающий список для ios
+
                         <View style={[styles.list, styles.dropbox1]}>
                             <DropDownPicker
                                 open={open}
@@ -191,7 +206,8 @@ const EvaluationScreen = () => {
                                 dropDownContainerStyle={{backgroundColor: '#282828', borderColor: '#ffcc00', borderWidth: 2, zIndex: 5, }}
                                 arrowIconStyle={{backgroundColor: '#ffcc00'}}
                                 tickIconStyle={{color: '#ffcc00'}}
-                                dropDownMinHeight={100}/>
+                                dropDownMinHeight={100}
+                            />
                         </View>
                         <View style={[styles.list, styles.dropbox2]}>
                             <DropDownPicker
@@ -241,9 +257,9 @@ const EvaluationScreen = () => {
                             <Image style={styles.infoImg} source={require('../images/info.png')}/>
                             <Text style={styles.infoText}>Информация по оценкам</Text>
                         </View>
-                        <EvaluationInfo info = {infoEvaluating}/>
+                        <EvaluationInfo info = {infoEvaluating}/> // Компонент информации о компетенциях
                     </> : <View style={styles.noInfo}>
-                        <ActivityIndicator animating={true} size="large" color="#ffcc00" />
+                        <ActivityIndicator animating={true} size="large" color="#ffcc00" /> // Индикатор загрузки, пока дынные не пришли с сервера
                     </View>
             }
             </ScrollView>
@@ -286,6 +302,7 @@ const styles = StyleSheet.create({
 
     helpContainer:{
         width: responsiveWidth(70),
+
     },
     listText:{
         fontSize: responsiveFontSize(2),
@@ -307,7 +324,6 @@ const styles = StyleSheet.create({
     },
 
     back:{
-        flex: 1,
         backgroundColor: '#393939',
     },
 
@@ -322,7 +338,6 @@ const styles = StyleSheet.create({
     },
 
     competences:{
-        flex: 0.91,
         backgroundColor: '#3f3f3f',
         margin: '3%',
         borderRadius: 40,

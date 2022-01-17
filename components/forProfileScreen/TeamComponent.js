@@ -1,3 +1,4 @@
+// Компонент, который возвращает команду стажера с сервера, принимает пропсы из profileScreen
 import React from 'react';
 import {Image, StyleSheet, Text, View} from "react-native";
 import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
     imgStyleTeam:{
         width: responsiveWidth(11),
         height: responsiveHeight(5),
-        borderRadius: 25,
+        borderRadius: 25000,
 
     },
     textTeamFio:{

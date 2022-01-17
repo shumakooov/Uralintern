@@ -1,8 +1,10 @@
+// Компонент графика
 import React from 'react'
 import { StyleSheet, Text, View} from 'react-native'
 
 const Graph = ({grades, label}) => {
 
+    // Формулы для вычисления длины и направления столбика на диаграмме
     const sizeToString = (grade) => {
         return ( grade > 0 ? 100 * Math.abs(grade) / 2 : 100 * Math.abs(grade)).toString() + '%'
     }
@@ -21,13 +23,15 @@ const Graph = ({grades, label}) => {
                 <Text style={styles.EvaluationText}>{label}</Text>
 
                 <View style={styles.graph_label}>
-                    <View style={styles.vertical_line}></View>
+                    <View style={styles.vertical_line}>
+                    </View>
                     <View style={styles.row}>
                         <Text style={styles.competencies}>Вовлеченность</Text>
                         <Text style={styles.grade_text_style}>{grades.competence1}</Text>
                         <View style={styles.graph_segment}>
                             <View style={styles.graph_segment_left}>
-                                <View style={[styles.line, segmentSizeLeft(grades.competence1)]}></View>
+                                <View style={[styles.line, segmentSizeLeft(grades.competence1)]}>
+                                </View>
                             </View>
                             <View style={styles.graph_segment_right}>
                                 <View style={[styles.line, segmentSizeRight(grades.competence1)]}>
@@ -40,7 +44,8 @@ const Graph = ({grades, label}) => {
                         <Text style={styles.grade_text_style}>{grades.competence2}</Text>
                         <View style={styles.graph_segment}>
                             <View style={styles.graph_segment_left}>
-                                <View style={[styles.line, segmentSizeLeft(grades.competence2)]}></View>
+                                <View style={[styles.line, segmentSizeLeft(grades.competence2)]}>
+                                </View>
                             </View>
                             <View style={styles.graph_segment_right}>
                                 <View style={[styles.line, segmentSizeRight(grades.competence2)]}>
@@ -53,7 +58,8 @@ const Graph = ({grades, label}) => {
                         <Text style={styles.grade_text_style}>{grades.competence3}</Text>
                         <View style={styles.graph_segment}>
                             <View style={styles.graph_segment_left}>
-                                <View style={[styles.line, segmentSizeLeft(grades.competence3)]}></View>
+                                <View style={[styles.line, segmentSizeLeft(grades.competence3)]}>
+                                </View>
                             </View>
                             <View style={styles.graph_segment_right}>
                                 <View style={[styles.line, segmentSizeRight(grades.competence3)]}>
@@ -66,7 +72,8 @@ const Graph = ({grades, label}) => {
                         <Text style={styles.grade_text_style}>{grades.competence4}</Text>
                         <View style={styles.graph_segment}>
                             <View style={styles.graph_segment_left}>
-                                <View style={[styles.line, segmentSizeLeft(grades.competence4)]}></View>
+                                <View style={[styles.line, segmentSizeLeft(grades.competence4)]}>
+                                </View>
                             </View>
                             <View style={styles.graph_segment_right}>
                                 <View style={[styles.line, segmentSizeRight(grades.competence4)]}>
@@ -94,11 +101,12 @@ const styles = StyleSheet.create({
     },
     vertical_line:{
         backgroundColor: '#ffcc00',
-        width: 4,
+        width: 2,
         height: '110%',
         position: 'absolute',
         right: '20%',
-        bottom: '2%'
+        bottom: '2%',
+        zIndex: 2
     },
     graph_label:{
         alignItems: 'center',
@@ -127,7 +135,7 @@ const styles = StyleSheet.create({
     competencies:{
         textAlign: 'left',
         width: '40%',
-        color: '#ffcc00',
+        color: 'white',
         fontSize: 15,
     },
     EvaluationText:{

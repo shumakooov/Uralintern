@@ -1,3 +1,4 @@
+// Экран отчета
 import React from 'react';
 import {
     StyleSheet,
@@ -14,9 +15,10 @@ import axios from "axios";
 import Graph from "../components/forInterpreterScreen/Graph";
 
 const InterpreterScreen = () => {
-const media = 'http://studprzi.beget.tech/'
-const[grades, setGrades] = React.useState({});
+const media = 'http://studprzi.beget.tech/' // Ссылка на API
+const[grades, setGrades] = React.useState({}); // Переменные состояния для получения оценок
 
+    // Функция для получения оценок
 const getData = async() => {
     try{
         const token = await AsyncStorage.getItem('token');
@@ -43,12 +45,12 @@ return (
             </SafeAreaView>
             {grades.rating ?
                 <>
-                    <Graph label={'Общая оценка'} grades={grades.rating.general}/>
+                    <Graph label={'Общая оценка'} grades={grades.rating.general}/> // Компонент графика
                     <Graph label={'Самооценка'} grades={grades.rating.self}/>
                     <Graph label={'Команда'} grades={grades.rating.team}/>
                     <Graph label={'Эксперты'} grades={grades.rating.expert}/>
                 </> : <View style={styles.noInfo}>
-                    <ActivityIndicator animating={true} size="large" color="#ffcc00" />
+                    <ActivityIndicator animating={true} size="large" color="#ffcc00" /> // Индикатор загрузки, пока дынные не пришли с сервера
                 </View>}
         </ScrollView>
     </View>

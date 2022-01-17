@@ -4,12 +4,13 @@ import {AuthContext} from "./components/forAuth/authContext";
 import {StyleSheet, View, Text, Alert} from 'react-native';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-console.disableYellowBox = true;
+console.disableYellowBox = true; // Скрыли варнинги, связанные с выпадающим списком!
 
 export default function App() {
     const [isAuth, setIsAuth] = useState(false)
     const [user, setUser] = useState({})
 
+    // Проверяет авторизован ли пользователь
     const checkAuth = async() => {
         try{
             const token = await AsyncStorage.getItem('token');
@@ -26,8 +27,8 @@ export default function App() {
                 {text: "OK"}])            }
     }
 
+    // Обрабатывает ошибки сервера
     const handleError = (e) => {
-        console.log(e.response.status)
         if (e.response.status < 500 && e.response.status > 400)
             Alert.alert("Ошибка", "Страницы не существует", [
                 {text: "Выйти",  onPress: () => {AsyncStorage.removeItem('token')}}])

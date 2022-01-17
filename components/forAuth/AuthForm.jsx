@@ -1,3 +1,4 @@
+// Форма авторизации
 import React, {useState } from 'react'
 import {
 	StyleSheet,
@@ -13,6 +14,7 @@ import { useAuth } from './useAuth'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import {responsiveFontSize} from "react-native-responsive-dimensions";
 
+// Получает навигатор как props для выхода из аккаунта
 const AuthForm = ({navigation}) => {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
@@ -23,6 +25,7 @@ const AuthForm = ({navigation}) => {
 			navigation.replace('Main')
 	})
 
+	// Проверяет почту и пароль на сервере, возвращает ответ от сервера в формате .json
 	async function req() {
 		try {
 			let url = 'http://studprzi.beget.tech/api/user/login';
@@ -45,6 +48,7 @@ const AuthForm = ({navigation}) => {
 				{text: "OK"}])    }
 	}
 
+	// Сохраняет токен в случае удачной попытки входа и перенаправляет на экран main
 	const authHandler = async () => {
 		let a = await req();
 		try {
@@ -58,6 +62,7 @@ const AuthForm = ({navigation}) => {
 		}
 	}
 
+	// Возвращает саму форму входа
 	const [loaded, setLoaded] = useState(false);
 	return (
 		<SafeAreaView style={styles.back}>

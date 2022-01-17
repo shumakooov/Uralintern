@@ -1,3 +1,4 @@
+// Компонент, который создает блок из четырех радиокнопок
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
@@ -8,7 +9,7 @@ const RadioBlock = (props) => {
 
     const setValueLog = (value) => {
         setValue(value)
-        props.setCompetence(value )
+        props.setCompetence(value)
     }
     return (
         <View style={styles.container}>
@@ -27,32 +28,5 @@ const styles = StyleSheet.create({
         marginTop: '4%',
         flexDirection: 'row',
         justifyContent: "space-between"
-    },
-    radioText: {
-        fontSize: responsiveFontSize(2),
-        color: 'gold',
-        fontWeight: '600',
-        textAlign: 'center',
-        top: 5
-    },
-    radioCircle: {
-        height: responsiveHeight(4.5),
-        width: responsiveWidth(9.5),
-        borderRadius: 100,
-        borderWidth: 1,
-        borderColor: '#ffcc00',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#808080'
-    },
-    selectedRb: {
-        height: responsiveHeight(4.5),
-        width: responsiveWidth(9.5),
-        borderRadius: 100,
-        borderWidth: 1,
-        borderColor: '#ffcc00',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#ffcc00',
-    },
+    }
 });

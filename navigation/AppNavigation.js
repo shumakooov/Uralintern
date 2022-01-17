@@ -1,11 +1,11 @@
+// Навигация между экранами, расположенная внизу
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
 import React from 'react';
-import { View, Image, StyleSheet, Text} from 'react-native'
+import {View, Image, StyleSheet, Text, Platform} from 'react-native'
 import EvaluationScreen from "../screens/EvaluationScreen";
 import InterpreterScreen from "../screens/InterpreterScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import 'react-native-gesture-handler'
-
 import {responsiveFontSize, responsiveHeight, responsiveWidth} from "react-native-responsive-dimensions";
 
 const Tab = createBottomTabNavigator();
@@ -15,9 +15,9 @@ const Tabs = () => {
         <Tab.Navigator
             screenOptions={{
                 headerShown: false,
-                tabBarShowLabel:false,
+                tabBarShowLabel: false,
                 tabBarStyle: [
-                    {display: "flex"},
+                    {display: "flex", height: responsiveHeight(10)},
                     null
                 ],
                 tabBarOptions: [{showLabel: false}]
@@ -26,7 +26,7 @@ const Tabs = () => {
         >
             <Tab.Screen name={'Evaluation'} component={EvaluationScreen} options={{
                 tabBarIcon: ({focused}) => (
-                    <View style={{top: '30%'}}>
+                    <View style={{top: '20%'}}>
                       <Image
                         source = {require('../images/interpreter_img.png')}
                         style={{
@@ -42,7 +42,7 @@ const Tabs = () => {
             }}/>
             <Tab.Screen name={'Profile'} component={ProfileScreen} options={{
                 tabBarIcon: ({focused}) => (
-                    <View style={{top: '23%'}}>
+                    <View style={{top: '15%'}}>
                         <Image
                             source = {require('../images/profile_img.png')}
                             style={{
@@ -58,7 +58,7 @@ const Tabs = () => {
             }}/>
             <Tab.Screen name={'Interpreter'} component={InterpreterScreen} options={{
                 tabBarIcon: ({focused}) => (
-                    <View style={{top: '30%'}}>
+                    <View style={{top: '20%'}}>
                         <Image
                             source = {require('../images/evaluation_img.png')}
                             style={{
@@ -80,7 +80,8 @@ const styles = StyleSheet.create({
     footerText: {
         color: '#000',
         fontSize: responsiveFontSize(1.5),
-        top: -35
+        top: -38,
+        textAlign: 'center'
 
     }
 })
